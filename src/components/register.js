@@ -8,9 +8,9 @@ const Register = () => {
         <div>
             <Landing />
             <form action="/register" method="POST">
-                <input type="email" name="email" id="email" />
-                <input type="text" name="username" id="username" />
-                <input type="password" name="password" id="password" />
+                <input type="email" name="email" id="email" /> <br />
+                <input type="text" name="username" id="username" /> <br />
+                <input type="password" name="password" id="password" /> <br />
                 <button type="submit">REGISTER</button>
             </form>
         </div>

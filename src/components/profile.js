@@ -12,13 +12,13 @@ const Profile = () => {
                 <div id="allergies">
                     <div>
                         Allergen1
-                        </div>
+                    </div>
                     <div>
                         Allergen2
-                        </div>
+                    </div>
                     <div>
                         Allergen3
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
