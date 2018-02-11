@@ -2,9 +2,11 @@ import React from 'react';
 
 const Landing = () => {
     return (
-        <div>
-            <h1>Peach of Mind</h1>
-            <p>- keep track of your child's allergies and have peace of mind -</p>
+        <div className="ui center aligned container">
+            
+                <h1 className="large-font">Peach of Mind</h1>
+                <p className="small-font">- keep track of your child's allergies and have peace of mind -</p>
+            
         </div>
     )
 };

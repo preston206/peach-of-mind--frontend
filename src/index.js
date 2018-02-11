@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+// css
+import './CSS/style.css';
+
 // components
 import Login from './components/login';
 import Register from './components/register';

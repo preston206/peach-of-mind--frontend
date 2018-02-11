@@ -1,0 +1,35 @@
+body {
+    background-color: #ff9966;
+}
+
+
+/* .large-font {
+    font-size: 6em;
+}
+
+.medium-font {
+    font-size: 1.3em;
+} */
+
+@media only screen and (max-width: 768px) {
+    body {
+        padding-top: 10em;
+        background-image: url('../IMG/peachImage.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: top left;
+        background-size: 50%;
+    }
+    form {
+        margin-top: 4em;
+        padding: 2em;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3%;
+    }
+    .large-font {
+        font-size: 3em;
+    }
+    .small-font {
+        font-size: 0.9em;
+    }
+}
