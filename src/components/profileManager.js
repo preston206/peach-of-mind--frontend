@@ -7,14 +7,18 @@ const ProfileManager = () => {
     return (
         <div>
             <Nav />
-            <div>
+            <div className="ui center aligned container pad-8em">
                 <h1>Profile Manager</h1>
                 <p>Select a profile</p>
-                <button type="button">Add Child</button> <br />
+
                 <div id="profile-buttons">
-                    <button type="button">Anthony's profile</button> <br />
-                    <button type="button">Rachel's profile</button> <br />
-                    <button type="button">Nick's profile</button>
+                    <button type="button" className="massive fluid ui black button">Add Child +</button> <br />
+                    <button type="button" className="massive fluid ui black button">Anthony</button> <br />
+                    <button type="button" className="massive fluid ui black button">Rachel</button> <br />
+                    <button type="button" className="massive fluid ui black button">Mark</button> <br />
+                    <button type="button" className="massive fluid ui black button">Martin</button> <br />
+                    <button type="button" className="massive fluid ui black button">Lindsey</button> <br />
+                    <button type="button" className="massive fluid ui black button">Nick</button>
                 </div>
             </div>
         </div>
