@@ -6,12 +6,12 @@ const Nav = () => {
     return (
         <header>
             <img id="logo" src={peach} alt="Peach of Mind Logo" />
+            <h1 id="nav-header">Peach of Mind</h1>
             <nav>
                 <a href="#" id="menu-icon">&#9776;</a>
                 <ul>
-                    <li><a href="#">Menu Link</a></li>
-                    <li><a href="#">Menu Link</a></li>
-                    <li><a href="#">Menu Link</a></li>
+                    <li><a href="#">Logout</a></li>
+                    <li><a href="#">Profile Manager</a></li>
                 </ul>
             </nav>
         </header>

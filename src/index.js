@@ -13,8 +13,7 @@ import Profile from './components/profile';
 import Allergen from './components/allergen';
 import Http404 from './components/http404';
 
-
-// TODO: react-scripts have been installed- how do I configure?
+// TODO: user usernames instead of IDs- including on the landing page\profile mgr
 
 const App = () => {
     return (

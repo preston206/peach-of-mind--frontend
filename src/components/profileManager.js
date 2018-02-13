@@ -8,10 +8,10 @@ const ProfileManager = () => {
         <div>
             <Nav />
             <div className="ui center aligned container pad-8em">
-                <h1>Profile Manager</h1>
+                <h1 id="profile-manager-header">Profile Manager</h1>
                 <p>Select a profile</p>
 
-                <div id="profile-buttons">
+                <div id="profile-buttons-container">
                     <button type="button" className="massive fluid ui black button">Add Child +</button> <br />
                     <button type="button" className="massive fluid ui black button">Anthony</button> <br />
                     <button type="button" className="massive fluid ui black button">Rachel</button> <br />
