@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 // components
-import Landing from './landing';
+import LandingHeader from './landingHeader';
 
 class Register extends React.Component {
     onSubmit(values) {
@@ -12,7 +12,7 @@ class Register extends React.Component {
     render() {
         return (
             <div className="peach-background">
-                <Landing />
+                <LandingHeader />
                 <div className="ui container">
                     <form
                         className="ui inverted form"

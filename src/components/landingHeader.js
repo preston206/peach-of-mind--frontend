@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Landing = () => {
+const LandingHeader = () => {
     return (
         <div className="ui center aligned container pad-10em">
             
@@ -11,4 +11,4 @@ const Landing = () => {
     )
 };
 
-export default Landing;
+export default LandingHeader;

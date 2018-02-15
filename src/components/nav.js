@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import peach from '../../public/IMG/peachImage.png';
 import peach from '../IMG/peachImage.png';
 
 const Nav = () => {

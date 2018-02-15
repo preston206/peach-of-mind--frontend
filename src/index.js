@@ -11,7 +11,7 @@ import reducers from './reducers';
 import App from './containers/app';
 
 // css
-import './CSS/style.css';
+import '../src/CSS/style.css';
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 
