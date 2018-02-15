@@ -12,10 +12,8 @@ import Login from '../components/login';
 import Register from '../components/register';
 import ProfileManager from '../components/profileManager';
 import Profile from '../components/profile';
-import Allergen from '../components/allergen';
+import AddAllergen from '../components/addAllergen';
 import Http404 from '../components/http404';
-
-// TODO: user usernames instead of IDs- including on the landing page\profile mgr
 
 class App extends React.Component {
 
@@ -35,7 +33,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/profile/allergen/:id" component={Allergen} />
+                    <Route path="/profile/allergen/:id" component={AddAllergen} />
                     <Route path="/profile/:id" component={Profile} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
