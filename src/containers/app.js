@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // actions
-import { getChildren, getAllergens } from '../actions';
+// import { getChildren, getChild, getAllergens, getAllergen } from '../actions';
+import { getChildren } from '../actions';
 
 // components
 import Login from '../components/login';
@@ -23,12 +24,14 @@ class App extends React.Component {
     // }
 
     componentWillMount() {
+        // this.props.getChild();
+        // this.props.getAllergen();
         this.props.getChildren();
-        this.props.getAllergens();
+        // this.props.getAllergens();
     }
 
     render() {
-        console.log("props data:", this.props.data.children);
+        console.log("props data:", this.props.data);
         return (
             <BrowserRouter>
                 <Switch>
@@ -50,8 +53,12 @@ const mapStateToProps = (state) => {
     }
 }
 
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({ getChildren, getChild, getAllergens, getAllergen }, dispatch)
+// };
+
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getChildren, getAllergens }, dispatch)
+    return bindActionCreators({ getChildren }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

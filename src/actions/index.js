@@ -8,7 +8,7 @@ const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 export const getChildren = () => {
 
     const endpoint = 'children';
-    const pid = '/5a7f700d464a78226c786a80';
+    const pid = '/5a85d2f13b2f32310c0d1705';
 
     const request = axios.get(`${baseURL}${endpoint}${pid}`)
         .then(response => response.data)
@@ -24,8 +24,8 @@ export const getChildren = () => {
 export const getChild = () => {
 
     const endpoint = 'children';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
 
     const request = axios.get(`${baseURL}${endpoint}${pid}${cid}`)
         .then(response => response.data)
@@ -41,7 +41,7 @@ export const getChild = () => {
 export const addChild = () => {
 
     const endpoint = 'children';
-    const pid = '/5a7f700d464a78226c786a80';
+    const pid = '/5a85d2f13b2f32310c0d1705';
 
     // send post with axios
     const request = axios.post(`${baseURL}${endpoint}${pid}`)
@@ -58,8 +58,8 @@ export const addChild = () => {
 export const editChild = () => {
 
     const endpoint = 'children';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
 
     // send put with axios
     const request = axios.put(`${baseURL}${endpoint}${pid}${cid}`)
@@ -76,8 +76,8 @@ export const editChild = () => {
 export const deleteChild = () => {
 
     const endpoint = 'children';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
 
     // send delete with axios
     const request = axios.delete(`${baseURL}${endpoint}${pid}${cid}`)
@@ -97,8 +97,8 @@ export const deleteChild = () => {
 export const getAllergens = () => {
 
     const endpoint = 'allergens';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
 
     const request = axios.get(`${baseURL}${endpoint}${pid}${cid}`)
         .then(response => response.data)
@@ -114,9 +114,9 @@ export const getAllergens = () => {
 export const getAllergen = () => {
 
     const endpoint = 'allergens';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
-    const aid = '/';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
+    const aid = '/5a85d6ff3b2f32310c0d170c';
 
     const request = axios.get(`${baseURL}${endpoint}${pid}${cid}${aid}`)
         .then(response => response.data)
@@ -132,8 +132,8 @@ export const getAllergen = () => {
 export const addAllergen = () => {
 
     const endpoint = 'allergens';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
 
     const request = axios.post(`${baseURL}${endpoint}${pid}${cid}`)
         .then(response => response.data)
@@ -149,9 +149,9 @@ export const addAllergen = () => {
 export const editAllergen = () => {
 
     const endpoint = 'allergens';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
-    const aid = '/';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
+    const aid = '/5a85d6ff3b2f32310c0d170c';
 
     const request = axios.put(`${baseURL}${endpoint}${pid}${cid}${aid}`)
         .then(response => response.data)
@@ -167,9 +167,9 @@ export const editAllergen = () => {
 export const deleteAllergen = () => {
 
     const endpoint = 'allergens';
-    const pid = '/5a7f700d464a78226c786a80';
-    const cid = '/5a7f70f0bfe1472840415306';
-    const aid = '/';
+    const pid = '/5a85d2f13b2f32310c0d1705';
+    const cid = '/5a85d4313b2f32310c0d1708';
+    const aid = '/5a85d6ff3b2f32310c0d170c';
 
     const request = axios.delete(`${baseURL}${endpoint}${pid}${cid}${aid}`)
         .then(response => response.data)
@@ -186,7 +186,7 @@ export const deleteAllergen = () => {
 
 // register
 // const endpoint = 'parents';
-// const pid = '/5a7f700d464a78226c786a80';
+// const pid = '/5a85d2f13b2f32310c0d1705';
 
 // login
 
