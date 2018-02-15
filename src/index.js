@@ -1,33 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import promiseMiddleware from 'redux-promise';
+
+// reducers
+import reducers from './reducers';
+
+// root container
+import App from './containers/app';
 
 // css
 import './CSS/style.css';
 
-// components
-import Login from './components/login';
-import Register from './components/register';
-import ProfileManager from './components/profileManager';
-import Profile from './components/profile';
-import Allergen from './components/allergen';
-import Http404 from './components/http404';
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore);
 
-// TODO: user usernames instead of IDs- including on the landing page\profile mgr
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route path="/profile/allergen/:id" component={Allergen} />
-                <Route path="/profile/:id" component={Profile} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/" exact component={ProfileManager} />
-                <Route component={Http404} />
-            </Switch>
-        </BrowserRouter>
-    )
-}
-
-ReactDOM.render(<App />, root);
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>
+    , document.getElementById('root'));
