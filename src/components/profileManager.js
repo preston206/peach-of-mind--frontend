@@ -33,11 +33,10 @@ class ProfileManager extends React.Component {
                 <div className="ui center aligned container pad-8em">
                     <h1 id="profile-manager-header">Profile Manager</h1>
                     <p>Select a profile</p>
-                    {/* <div className="ui black segment"> */}
                     <div id="add-child-button-container">
                         <button
                             type="button"
-                            className="big fluid ui green button"
+                            className="large fluid ui green button"
                             onClick={event => this.handleOpenModal(event)
                             }>
                             Add Child +

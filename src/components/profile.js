@@ -27,8 +27,8 @@ const Profile = () => {
                     </div>
 
                     <div className="two ui buttons">
-                        <button className="mini ui button">sort by reaction</button>
-                        <button className="mini ui button">sort by safe</button>
+                        <button className="mini ui black button">sort by reaction</button>
+                        <button className="mini ui black button">sort by safe</button>
                     </div>
 
                     <div className="ui green segments">
