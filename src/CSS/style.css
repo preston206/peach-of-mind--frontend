@@ -149,6 +149,48 @@ a:hover {
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 3%;
     }
+    .edit-modal {
+        position: absolute;
+        top: 275px;
+        left: 10px;
+        right: 10px;
+        bottom: 45px;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 4px;
+        
+    }
+    .add-modal {
+        position: absolute;
+        top: 150px;
+        left: 10px;
+        right: 10px;
+        bottom: 45px;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 4px;
+        
+    }
+    .add-profile-form {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3.5em;
+        padding: 2em;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3%;
+    }
+    .edit-profile-form {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.5em;
+        padding: 2em;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 3%;
+    }
+    .profile-form-close-button {
+        font-size: 1.5em;
+        color: black;
+    }
     .large-font {
         font-size: 3em;
     }

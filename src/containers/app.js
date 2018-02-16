@@ -16,6 +16,9 @@ import AddAllergen from '../components/addAllergen';
 import EditAllergen from '../components/editAllergen';
 import Http404 from '../components/http404';
 
+import ReactModal from 'react-modal';
+ReactModal.setAppElement('#root');
+
 class App extends React.Component {
 
     // state = {
