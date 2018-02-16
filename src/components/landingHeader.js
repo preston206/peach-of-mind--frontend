@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const LandingHeader = () => {
     return (
@@ -9,4 +10,12 @@ const LandingHeader = () => {
     )
 };
 
-export default LandingHeader;
+// export default LandingHeader;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(LandingHeader);

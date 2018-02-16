@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // components
 import Nav from './nav';
@@ -13,7 +15,9 @@ const ProfileManager = () => {
 
                 <div id="profile-buttons-container">
                     <button type="button" className="massive fluid ui black button">Add Child +</button> <br />
-                    <button type="button" className="massive fluid ui black button">Anthony</button> <br />
+                    <Link to="/parent/child/9090">
+                        <button type="button" className="massive fluid ui black button">Anthony</button> <br />
+                    </Link>
                     <button type="button" className="massive fluid ui black button">Rachel</button> <br />
                     <button type="button" className="massive fluid ui black button">Mark</button> <br />
                     <button type="button" className="massive fluid ui black button">Martin</button> <br />
@@ -25,4 +29,12 @@ const ProfileManager = () => {
     )
 };
 
-export default ProfileManager;
+// export default ProfileManager;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(ProfileManager);

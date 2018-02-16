@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // components
 import LandingHeader from './landingHeader';
@@ -14,12 +16,14 @@ class Register extends React.Component {
             <div className="peach-background">
                 <LandingHeader />
                 <div className="ui container">
+
                     <form
                         className="ui inverted form login-register-form"
                         action="/register"
                         method="POST"
                         onSubmit={this.props.handleSubmit(values => this.onSubmit(values)
                         )}>
+
                         <div className="required field">
                             <label htmlFor="email">Email</label>
                             <Field component="input" type="email" name="email" id="email" required autoFocus />
@@ -32,10 +36,15 @@ class Register extends React.Component {
                             <label htmlFor="password">Password</label>
                             <Field component="input" type="password" name="password" id="password" required />
                         </div>
-                        <button type="submit" className="fluid ui inverted black button">REGISTER</button>
+
+                        <button type="submit" className="fluid ui green button btn-margin-bottom">REGISTER</button>
+
+                        <Link to="/login">
+                            <button type="submit" className="fluid ui grey button">GO TO LOGIN</button>
+                        </Link>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 };
@@ -44,4 +53,12 @@ Register = reduxForm({
     form: 'register'
 })(Register);
 
-export default Register;
+// export default Register;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(Register);

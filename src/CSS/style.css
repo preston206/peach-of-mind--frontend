@@ -38,6 +38,14 @@ body {
     margin-top: 2%!important;
 }
 
+.setting {
+    color: black;
+}
+
+.ui.green.button {
+    margin-bottom: 3px;
+}
+
 
 /* .large-font {
     font-size: 6em;
@@ -130,7 +138,7 @@ a:hover {
         color: #ff9966;
     }
     .login-register-form {
-        margin-top: 4em;
+        margin-top: 3.5em;
         padding: 2em;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 3%;

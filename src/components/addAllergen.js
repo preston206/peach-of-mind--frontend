@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // components
 import Nav from './nav';
@@ -49,10 +51,12 @@ class AddAllergen extends React.Component {
                         </div>
 
                         <button type="submit" className="fluid ui green button">SUBMIT</button>
-                        <button type="button" id="cancel-allergen" className="fluid ui grey button">CANCEL</button>
+                        <Link to={`${this.props.history.goBack}`}>
+                            <button type="button" id="cancel-allergen" className="fluid ui grey button">CANCEL</button>
+                        </Link>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 };
@@ -61,4 +65,12 @@ AddAllergen = reduxForm({
     form: 'addAllergen'
 })(AddAllergen);
 
-export default AddAllergen;
+// export default AddAllergen;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(AddAllergen);

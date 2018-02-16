@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // components
 import Nav from './nav';
@@ -16,11 +18,11 @@ const Profile = () => {
                         </div>
 
                         <div className="ui black inverted segment">
-                            <a href="#">
+                            <Link to="/parent/child/allergen/4321/add">
                                 <i className="plus icon"></i>
                                 <span className="add-allergen">Add</span>
                                 <p className="add-allergen">allergen</p>
-                            </a>
+                            </Link>
                         </div>
 
                     </div>
@@ -37,9 +39,10 @@ const Profile = () => {
                             </div>
 
                             <div className="ui grey inverted segment">
-                                <span className="allergen-edit">
+                                <Link to="/parent/child/allergen/4321/edit">
                                     <i className="setting icon"></i>
-                                </span>
+                                    <span className="allergen-edit"></span>
+                                </Link>
                                 <span className="allergen-delete">
                                     <i className="remove icon"></i>
                                 </span>
@@ -163,4 +166,12 @@ const Profile = () => {
     )
 };
 
-export default Profile;
+// export default Profile;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(Profile);

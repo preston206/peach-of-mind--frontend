@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from './nav';
+import { connect } from 'react-redux';
 
 const Http404 = () => {
     return (
@@ -13,4 +14,12 @@ const Http404 = () => {
     )
 };
 
-export default Http404;
+// export default Http404;
+
+function mapStateToProps(state) {
+    return {
+        data: state.children
+    }
+};
+
+export default connect(mapStateToProps)(Http404);
