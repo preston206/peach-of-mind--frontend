@@ -24,7 +24,11 @@ const Profile = () => {
                                 <p className="add-allergen">allergen</p>
                             </Link>
                         </div>
+                    </div>
 
+                    <div className="two ui buttons">
+                        <button className="mini ui button">sort by reaction</button>
+                        <button className="mini ui button">sort by safe</button>
                     </div>
 
                     <div className="ui green segments">
