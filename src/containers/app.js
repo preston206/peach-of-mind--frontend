@@ -13,6 +13,7 @@ import Register from '../components/register';
 import ProfileManager from '../components/profileManager';
 import Profile from '../components/profile';
 import AddAllergen from '../components/addAllergen';
+import EditAllergen from '../components/editAllergen';
 import Http404 from '../components/http404';
 
 class App extends React.Component {
@@ -33,8 +34,9 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/profile/allergen/:id" component={AddAllergen} />
-                    <Route path="/profile/:id" component={Profile} />
+                    <Route path="/parent/child/allergen/:id/add" component={AddAllergen} />
+                    <Route path="/parent/child/allergen/:id/edit" component={EditAllergen} />
+                    <Route path="/parent/child/:id" component={Profile} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/" exact component={ProfileManager} />
