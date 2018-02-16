@@ -15,7 +15,7 @@ class Register extends React.Component {
                 <LandingHeader />
                 <div className="ui container">
                     <form
-                        className="ui inverted form"
+                        className="ui inverted form login-register-form"
                         action="/register"
                         method="POST"
                         onSubmit={this.props.handleSubmit(values => this.onSubmit(values)

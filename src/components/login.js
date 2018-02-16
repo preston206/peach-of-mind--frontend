@@ -16,7 +16,7 @@ class Login extends React.Component {
 
                 <div className="ui container">
                     <form
-                        className="ui inverted form"
+                        className="ui inverted form login-register-form"
                         action="/login"
                         method="POST"
                         onSubmit={this.props.handleSubmit(values => this.onSubmit(values)
