@@ -58,24 +58,16 @@ class Profile extends React.Component {
                 <div id="profile-page" className="ui center aligned container pad-9em">
                     <div id="allergies-container" className="ui black inverted segment">
 
-                        <div className="ui horizontal segments">
-
-                            <div className="ui secondary inverted segment">
-                                <h1 id="profile-header">{childName}</h1>
-                            </div>
-
-                            <div className="ui black inverted segment">
-                                <Link to="/parent/child/allergen/4321/add">
-                                    <i className="plus icon"></i>
-                                    <span className="add-allergen">Add</span>
-                                    <p className="add-allergen">allergen</p>
-                                </Link>
-                            </div>
+                        <div className="ui center aligned secondary inverted segment">
+                            <h1 id="profile-header">{childName}</h1>
                         </div>
 
-                        <div className="two ui buttons">
-                            <button className="mini ui black button">sort by reaction</button>
-                            <button className="mini ui black button">sort by safe</button>
+                        <div className="three ui buttons">
+                            <button className="mini ui inverted button">sort by reaction</button>
+                            <button className="mini ui inverted button">sort by safe</button>
+                            <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/allergen/add`}>
+                                <button className="mini ui inverted button">add allergen</button>
+                            </Link>
                         </div>
 
                         {renderAllergies(allergies)}
