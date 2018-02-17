@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // actions
-import { getAllergens } from '../actions';
+import { getChildren } from '../actions';
 
 // components
 import Nav from './nav';
@@ -11,20 +11,19 @@ import Nav from './nav';
 class Profile extends React.Component {
 
     componentWillMount() {
-        // const pid = "5a85d2f13b2f32310c0d1705";
-        // const cid = "5a85d4313b2f32310c0d1708";
-        const pid = "5a85d2f13b2f32310c0d1705";
-        const cid = this.props.match.params.id;
-        console.log("match:",this.props.match);
-        this.props.dispatch(getAllergens(pid, cid));
+        const pid = this.props.match.params.pid;
+        const cid = this.props.match.params.cid;
+        this.props.dispatch(getChildren(pid, cid));
     }
 
     render() {
 
-        console.log("props from profile:", this.props.parent.allergens)
+        const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
+        const allergies = child.allergies;
+        const childName = child.child;
 
         const renderAllergies = allergies => (
-            allergies ?
+            allergies.length > 0 ?
                 allergies.map(allergen => (
                     <div className="ui green segments" key={allergen._id}>
                         <div className="ui green inverted segment">
@@ -60,8 +59,9 @@ class Profile extends React.Component {
                     <div id="allergies-container" className="ui black inverted segment">
 
                         <div className="ui horizontal segments">
+
                             <div className="ui secondary inverted segment">
-                                <h1 id="profile-header">Anthony</h1>
+                                <h1 id="profile-header">{childName}</h1>
                             </div>
 
                             <div className="ui black inverted segment">
@@ -78,7 +78,7 @@ class Profile extends React.Component {
                             <button className="mini ui black button">sort by safe</button>
                         </div>
 
-                        {renderAllergies(this.props.parent.allergens)}
+                        {renderAllergies(allergies)}
 
                     </div>
                 </div>
@@ -91,7 +91,7 @@ class Profile extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        parent: state.allergens
+        parent: state.children
     }
 };
 

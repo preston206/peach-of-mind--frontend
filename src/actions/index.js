@@ -6,12 +6,13 @@ const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 
 // get all children associated with a specific user\parent
 export const getChildren = (parent) => {
+    // console.log("parent", parent);
 
     const endpoint = 'children';
     // const pid = '/5a85d2f13b2f32310c0d1705';
     const pid = parent;
 
-    const request = axios.get(`${baseURL}${endpoint}${pid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -22,13 +23,18 @@ export const getChildren = (parent) => {
 };
 
 // get specific child profile
-export const getChild = () => {
+export const getChild = (parent, child) => {
+
+    console.log("parent", parent);
+    console.log("child", child);
 
     const endpoint = 'children';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    const pid = parent;
+    const cid = child;
 
-    const request = axios.get(`${baseURL}${endpoint}${pid}${cid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
