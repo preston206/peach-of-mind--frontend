@@ -33,7 +33,7 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("props data:", this.props.data);
+        console.log("props:", this.props);
         return (
             <BrowserRouter>
                 <Switch>
@@ -52,7 +52,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        data: state.children
+        parent: state.children
     }
 }
 

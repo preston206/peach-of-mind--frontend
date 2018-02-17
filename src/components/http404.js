@@ -18,7 +18,7 @@ const Http404 = () => {
 
 function mapStateToProps(state) {
     return {
-        data: state.children
+        parent: state.children
     }
 };
 
