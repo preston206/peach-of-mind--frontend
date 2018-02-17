@@ -35,7 +35,7 @@ class Nav extends React.Component {
                     <a href="#" id="menu-icon">&#9776;</a>
                     <ul>
                         <li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
-                        <li><Link to="/">Profile Manager</Link></li>
+                        <li><Link to={`/${this.props.pid}`}>Profile Manager</Link></li>
                         <li><a href="#">Logout</a></li>
                     </ul>
                 </nav>

@@ -55,7 +55,7 @@ class Profile extends React.Component {
 
         return (
             <div>
-                <Nav />
+                <Nav pid={this.props.match.params.pid} />
                 <div id="profile-page" className="ui center aligned container pad-9em">
                     <div id="allergies-container" className="ui black inverted segment">
 

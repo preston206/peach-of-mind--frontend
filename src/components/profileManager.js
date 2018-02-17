@@ -19,7 +19,8 @@ class ProfileManager extends React.Component {
     };
 
     componentWillMount() {
-        this.props.dispatch(getChildren());
+        const pid = this.props.match.params.pid;
+        this.props.dispatch(getChildren(pid));
     }
 
     onSubmit(values) {
@@ -35,18 +36,18 @@ class ProfileManager extends React.Component {
     }
 
     render() {
-        console.log("props from profile mgr component:", this.props.parent);
-
+        console.log("props from profile mgr component:", this.props.match);
+        
         const renderChildren = children => (
             children ?
                 children.map(child => (
-                    <Link to={`/parent/child/${child._id}`} key={child._id}>
+                    <Link to={`/${this.props.match.params.pid}/${child._id}`} key={child._id}>
                         <button type="button" className="massive fluid ui black button">{child.child}</button>
                     </Link>
                 ))
                 : <div className="ui segment"><p>You haven't added any child profiles yet.</p></div>
         )
-
+        
         return (
             <div>
                 <Nav />
