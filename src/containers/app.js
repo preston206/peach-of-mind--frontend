@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 // actions
 // import { getChildren, getChild, getAllergens, getAllergen } from '../actions';
-import { getChildren } from '../actions';
+import { getChildren, getAllergens } from '../actions';
 
 // components
 import Login from '../components/login';
@@ -28,8 +28,8 @@ class App extends React.Component {
     componentWillMount() {
         // this.props.getChild();
         // this.props.getAllergen();
-        this.props.getChildren();
-        // this.props.getAllergens();
+        // this.props.getChildren();
+        this.props.getAllergens();
     }
 
     render() {
@@ -52,7 +52,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        parent: state.children
+        parent: state.allergens
     }
 }
 
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 // };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getChildren }, dispatch)
+    return bindActionCreators({ getChildren, getAllergens }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -94,13 +94,16 @@ export const deleteChild = () => {
 // // // ALLERGEN ACTIONS // // //
 
 // get all allergens for specific child profile
-export const getAllergens = () => {
+export const getAllergens = (parent, child) => {
 
     const endpoint = 'allergens';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
+    const pid = parent;
+    const cid = child;
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    // const cid = '/5a85d5053b2f32310c0d170a';
 
-    const request = axios.get(`${baseURL}${endpoint}${pid}${cid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 

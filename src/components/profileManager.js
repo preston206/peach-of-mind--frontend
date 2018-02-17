@@ -2,8 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
 import ReactModal from 'react-modal';
+
+// actions
+import { getChildren } from '../actions';
 
 // components
 import Nav from './nav';
@@ -13,6 +17,10 @@ class ProfileManager extends React.Component {
     state = {
         showModal: false
     };
+
+    componentWillMount() {
+        this.props.dispatch(getChildren());
+    }
 
     onSubmit(values) {
         console.log(values);
@@ -27,6 +35,18 @@ class ProfileManager extends React.Component {
     }
 
     render() {
+        console.log("props from profile mgr component:", this.props.parent);
+
+        const renderChildren = children => (
+            children ?
+                children.map(child => (
+                    <Link to={`/parent/child/${child._id}`} key={child._id}>
+                        <button type="button" className="massive fluid ui black button">{child.child}</button>
+                    </Link>
+                ))
+                : <div className="ui segment"><p>You haven't added any child profiles yet.</p></div>
+        )
+
         return (
             <div>
                 <Nav />
@@ -43,14 +63,7 @@ class ProfileManager extends React.Component {
                         </button>
                     </div>
                     <div id="profile-buttons-container">
-                        <Link to="/parent/child/9090">
-                            <button type="button" className="massive fluid ui black button">Anthony</button>
-                        </Link>
-                        <button type="button" className="massive fluid ui black button">Rachel</button>
-                        <button type="button" className="massive fluid ui black button">Mark</button>
-                        <button type="button" className="massive fluid ui black button">Martin</button>
-                        <button type="button" className="massive fluid ui black button">Lindsey</button>
-                        <button type="button" className="massive fluid ui black button">Nick</button>
+                        {renderChildren(this.props.parent.children)}
                     </div>
                 </div>
                 <ReactModal
