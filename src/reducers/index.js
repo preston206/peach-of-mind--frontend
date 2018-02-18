@@ -7,10 +7,10 @@ import allergens from './allergen_reducer';
 import parents from './parent_reducer';
 
 const rootReducer = combineReducers({
+    form: formReducer,
     children,
     allergens,
     parents,
-    form: formReducer
 });
 
 export default rootReducer;

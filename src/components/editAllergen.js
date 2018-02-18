@@ -3,10 +3,21 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// actions
+import { getAllergen } from '../actions';
+
 // components
 import Nav from './nav';
 
 class EditAllergen extends React.Component {
+
+    componentWillMount() {
+        const pid = this.props.match.params.pid;
+        const cid = this.props.match.params.cid;
+        const aid = this.props.match.params.aid;
+        this.props.dispatch(getAllergen(pid, cid, aid));
+    }
+
     onSubmit(values) {
         console.log(values);
     }
@@ -62,16 +73,31 @@ class EditAllergen extends React.Component {
     }
 };
 
-EditAllergen = reduxForm({
-    form: 'editAllergen'
-})(EditAllergen);
+
 
 // export default EditAllergen;
 
 function mapStateToProps(state) {
-    return {
-        parent: state.children
+    if (state.allergens.allergen) {
+        return {
+            allergen: state.allergens.allergen,
+            initialValues: {
+                "allergen": state.allergens.allergen.allergen,
+                "reaction-details": state.allergens.allergen.details,
+                "reaction": state.allergens.allergen.reaction
+            }
+        }
+    }
+    else {
+        return {
+            allergen: state.allergens.allergen
+        }
     }
 };
+
+EditAllergen = reduxForm({
+    form: 'editAllergen',
+    enableReinitialize: true
+})(EditAllergen);
 
 export default connect(mapStateToProps)(EditAllergen);

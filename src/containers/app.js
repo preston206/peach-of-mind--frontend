@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // actions
-// import { getChildren, getChild, getAllergens, getAllergen } from '../actions';
-import { getChildren, getAllergens } from '../actions';
+import { getChildren, getChild, getAllergens, getAllergen } from '../actions';
+// import { getChildren, getAllergens } from '../actions';
 
 // components
 import Login from '../components/login';
@@ -25,20 +25,20 @@ class App extends React.Component {
     //     children: []
     // }
 
-    componentWillMount() {
-        // this.props.getChild();
-        // this.props.getAllergen();
-        // this.props.getChildren();
-        this.props.getAllergens();
-    }
+    // componentWillMount() {
+    //     this.props.getChild();
+    //     this.props.getAllergen();
+    //     this.props.getChildren();
+    //     this.props.getAllergens();
+    // }
 
     render() {
-        console.log("props:", this.props);
+        // console.log("props:", this.props);
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/:pid/:cid/allergen/add" component={AddAllergen} />
-                    <Route path="/:pid/:cid/allergen/edit" component={EditAllergen} />
+                    <Route path="/:pid/:cid/:aid/add" component={AddAllergen} />
+                    <Route path="/:pid/:cid/:aid/edit" component={EditAllergen} />
                     <Route path="/:pid/:cid" component={Profile} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
@@ -53,16 +53,12 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        parent: state.allergens
+        parent: state.children
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({ getChildren, getChild, getAllergens, getAllergen }, dispatch)
-// };
-
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getChildren, getAllergens }, dispatch)
+    return bindActionCreators({ getChildren, getChild, getAllergens, getAllergen }, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

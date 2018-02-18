@@ -80,7 +80,7 @@ class Profile extends React.Component {
                                 </div>
 
                                 <div className="ui grey inverted segment">
-                                    <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/allergen/edit`}>
+                                    <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/${allergen._id}/edit`}>
                                         <i className="setting icon" title="remove this allergen"></i>
                                         <span className="allergen-edit"></span>
                                     </Link>
