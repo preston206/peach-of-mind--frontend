@@ -6,7 +6,6 @@ const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 
 // get all children associated with a specific user\parent
 export const getChildren = (parent) => {
-    // console.log("parent", parent);
 
     const endpoint = 'children';
     // const pid = '/5a85d2f13b2f32310c0d1705';
@@ -25,9 +24,6 @@ export const getChildren = (parent) => {
 // get specific child profile
 export const getChild = (parent, child) => {
 
-    console.log("parent", parent);
-    console.log("child", child);
-
     const endpoint = 'children';
     // const pid = '/5a85d2f13b2f32310c0d1705';
     // const cid = '/5a85d4313b2f32310c0d1708';
@@ -45,13 +41,14 @@ export const getChild = (parent, child) => {
 };
 
 // add child profile
-export const addChild = () => {
+export const addChild = (parent) => {
 
     const endpoint = 'children';
-    const pid = '/5a85d2f13b2f32310c0d1705';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    const pid = parent;
 
     // send post with axios
-    const request = axios.post(`${baseURL}${endpoint}${pid}`)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -62,14 +59,16 @@ export const addChild = () => {
 };
 
 // edit child profile
-export const editChild = () => {
+export const editChild = (parent, child) => {
 
     const endpoint = 'children';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    const pid = parent;
+    const cid = child;
 
     // send put with axios
-    const request = axios.put(`${baseURL}${endpoint}${pid}${cid}`)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -80,14 +79,16 @@ export const editChild = () => {
 };
 
 // delete child profile
-export const deleteChild = () => {
+export const deleteChild = (parent, child) => {
 
     const endpoint = 'children';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    const pid = parent;
+    const cid = child;
 
     // send delete with axios
-    const request = axios.delete(`${baseURL}${endpoint}${pid}${cid}`)
+    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -121,14 +122,17 @@ export const getAllergens = (parent, child) => {
 };
 
 // get single allergen for specific child profile
-export const getAllergen = () => {
+export const getAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
-    const aid = '/5a85d6ff3b2f32310c0d170c';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    // const aid = '/5a85d6ff3b2f32310c0d170c';
+    const pid = parent;
+    const cid = child;
+    const aid = allergen;
 
-    const request = axios.get(`${baseURL}${endpoint}${pid}${cid}${aid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -139,13 +143,15 @@ export const getAllergen = () => {
 };
 
 // add new allergen for specific child profile
-export const addAllergen = () => {
+export const addAllergen = (parent, child) => {
 
     const endpoint = 'allergens';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    const pid = parent;
+    const cid = child;
 
-    const request = axios.post(`${baseURL}${endpoint}${pid}${cid}`)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}/${cid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -156,14 +162,17 @@ export const addAllergen = () => {
 };
 
 // edit allergen details for specific child profile
-export const editAllergen = () => {
+export const editAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
-    const aid = '/5a85d6ff3b2f32310c0d170c';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    // const aid = '/5a85d6ff3b2f32310c0d170c';
+    const pid = parent;
+    const cid = child;
+    const aid = allergen;
 
-    const request = axios.put(`${baseURL}${endpoint}${pid}${cid}${aid}`)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -174,14 +183,17 @@ export const editAllergen = () => {
 };
 
 // delete allergen for specific child profile
-export const deleteAllergen = () => {
+export const deleteAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    const pid = '/5a85d2f13b2f32310c0d1705';
-    const cid = '/5a85d4313b2f32310c0d1708';
-    const aid = '/5a85d6ff3b2f32310c0d170c';
+    // const pid = '/5a85d2f13b2f32310c0d1705';
+    // const cid = '/5a85d4313b2f32310c0d1708';
+    // const aid = '/5a85d6ff3b2f32310c0d170c';
+    const pid = parent;
+    const cid = child;
+    const aid = allergen;
 
-    const request = axios.delete(`${baseURL}${endpoint}${pid}${cid}${aid}`)
+    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
         .then(response => response.data)
         .catch(error => console.log(error));
 
