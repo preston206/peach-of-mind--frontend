@@ -47,6 +47,10 @@ body {
     margin-bottom: 7px;
 }
 
+.mini.ui.inverted.button {
+    height: 100%;
+    /* width: 33.3%; */
+}
 
 /* .large-font {
     font-size: 6em;
