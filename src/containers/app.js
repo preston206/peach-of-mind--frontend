@@ -37,7 +37,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/:pid/:cid/:aid/add" component={AddAllergen} />
+                    <Route path="/:pid/:cid/allergen/add" component={AddAllergen} />
                     <Route path="/:pid/:cid/:aid/edit" component={EditAllergen} />
                     <Route path="/:pid/:cid" component={Profile} />
                     <Route path="/login" component={Login} />
