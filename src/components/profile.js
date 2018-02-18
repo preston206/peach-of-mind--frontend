@@ -59,11 +59,19 @@ class Profile extends React.Component {
                         };
                     };
 
+                    const allergenReaction = allergen.reaction === "safe" ?
+                        <div className="ui green inverted segment">
+                            <span className="allergen-name">{allergen.allergen}</span>
+                        </div>
+                        :
+                        <div className="ui red inverted segment">
+                            <span className="allergen-name">{allergen.allergen}</span>
+                        </div>;
+
                     return (
-                        <div className="ui green segments" key={allergen._id}>
-                            <div className="ui green inverted segment">
-                                <span className="allergen-name">{allergen.allergen}</span>
-                            </div>
+                        <div className="ui segments" key={allergen._id}>
+
+                            {allergenReaction}
 
                             <div className="ui horizontal segments">
                                 <div className="ui grey inverted segment">
