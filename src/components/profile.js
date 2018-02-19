@@ -23,7 +23,6 @@ class Profile extends React.Component {
         return this.props.dispatch(getChildren(this.state.pid));
     }
 
-
     deleteAllergen = id => {
         const confirmDelete = window.confirm("delete?");
         if (confirmDelete) {

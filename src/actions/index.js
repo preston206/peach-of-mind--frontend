@@ -41,14 +41,14 @@ export const getChild = (parent, child) => {
 };
 
 // add child profile
-export const addChild = (parent) => {
+export const addChild = (parent, childName) => {
 
     const endpoint = 'children';
     // const pid = '/5a85d2f13b2f32310c0d1705';
     const pid = parent;
 
     // send post with axios
-    const request = axios.post(`${baseURL}${endpoint}/${pid}`)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}`, childName)
         .then(response => response.data)
         .catch(error => console.log(error));
 

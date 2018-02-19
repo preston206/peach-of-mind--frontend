@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 
 // actions
-import { getChildren } from '../actions';
+import { getChildren, addChild } from '../actions';
 
 // components
 import Nav from './nav';
@@ -15,16 +15,25 @@ import Nav from './nav';
 class ProfileManager extends React.Component {
 
     state = {
-        showModal: false
+        showModal: false,
+        pid: this.props.match.params.pid
     };
 
     componentWillMount() {
-        const pid = this.props.match.params.pid;
-        this.props.dispatch(getChildren(pid));
+        // const pid = this.props.match.params.pid;
+        return this.props.dispatch(getChildren(this.state.pid));
     }
 
-    onSubmit(values) {
-        console.log(values);
+    componentWillUpdate() {
+        // const pid = this.props.match.params.pid;
+        return this.props.dispatch(getChildren(this.state.pid));
+    }
+
+    onSubmit(child) {
+        // const pid = this.props.match.params.pid;
+        this.props.dispatch(addChild(this.state.pid, child));
+        this.handleCloseModal();
+        // this.props.history.push(`/profilemgr/${this.state.pid}`);
     }
 
     handleOpenModal() {
@@ -37,7 +46,7 @@ class ProfileManager extends React.Component {
 
     render() {
         // console.log("props from profile mgr component:", this.props.match);
-        
+
         const renderChildren = children => (
             children ?
                 children.map(child => (
@@ -47,7 +56,7 @@ class ProfileManager extends React.Component {
                 ))
                 : <div className="ui segment"><p>You haven't added any child profiles yet.</p></div>
         )
-        
+
         return (
             <div>
                 <Nav pid={this.props.match.params.pid} />
@@ -86,8 +95,8 @@ class ProfileManager extends React.Component {
                         onSubmit={this.props.handleSubmit(values => this.onSubmit(values)
                         )}>
                         <div className="field">
-                            <label htmlFor="allergen-input">Name:</label>
-                            <Field component="input" type="text" name="allergen" id="allergen-input" />
+                            <label htmlFor="child-input">Name:</label>
+                            <Field component="input" type="text" name="childName" id="child-input" />
                         </div>
                         <button type="submit" className="fluid ui green button">SUBMIT</button>
                     </form>
@@ -100,8 +109,6 @@ class ProfileManager extends React.Component {
 ProfileManager = reduxForm({
     form: 'profileManagerForm'
 })(ProfileManager);
-
-// export default ProfileManager;
 
 function mapStateToProps(state) {
     return {
