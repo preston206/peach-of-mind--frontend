@@ -44,18 +44,36 @@ class ProfileManager extends React.Component {
         this.setState({ showModal: false });
     }
 
-    render() {
-        // console.log("props from profile mgr component:", this.props.match);
+    // this method first accepts data which should be the array of children
+    // then, checks to verify that it is indeed the array of children
+    // thten, if the array is not empty it returns the JSX, otherwise returns the missing child profile msg
+    // this method was originally exactly like the ternary in profile.js but it wasnt displaying...
+    // the msg if no chidlren were present- this nested condition solved the problem
+    renderChildren = children => {
+        // console.log("children-", children);
 
-        const renderChildren = children => (
-            children ?
-                children.map(child => (
+        if (children) {
+
+            if (children.length > 0) {
+                return children.map(child => (
                     <Link to={`/${this.props.match.params.pid}/${child._id}`} key={child._id}>
                         <button type="button" className="massive fluid ui black button">{child.child}</button>
                     </Link>
                 ))
-                : <div className="ui segment"><p>You haven't added any child profiles yet.</p></div>
-        )
+            }
+            else {
+                return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>);
+            }
+
+        }
+        else {
+            return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>);
+        }
+    }
+
+    render() {
+
+        const childrenArray = this.props.parent.children;
 
         return (
             <div>
@@ -73,7 +91,7 @@ class ProfileManager extends React.Component {
                         </button>
                     </div>
                     <div id="profile-buttons-container">
-                        {renderChildren(this.props.parent.children)}
+                        {this.renderChildren(childrenArray)}
                     </div>
                 </div>
                 <ReactModal
