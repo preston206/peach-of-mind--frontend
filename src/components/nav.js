@@ -26,25 +26,46 @@ class Nav extends React.Component {
         this.setState({ showModal: false });
     }
 
+    renderNav(props) {
+        if (props === "profileNav") {
+            return (<ul><li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
+                <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
+                <li><a href="#">Logout</a></li></ul>);
+        }
+        else if (props === "allergenNav") {
+            return (<ul><li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
+                <li><a href="#">Logout</a></li></ul>);
+        }
+        else {
+            return (<ul><li><a href="#">Logout</a></li></ul>);
+        }
+    }
+
     render() {
+
+        const profileProp = this.props.profile || null;
+        const allergenProp = this.props.allergen || null;
+
+
+
+
         return (
             <header>
                 <img id="logo" src={peach} alt="Peach of Mind Logo" />
                 <h1 id="nav-header">Peach of Mind</h1>
+
                 <nav>
                     <a href="#" id="menu-icon">&#9776;</a>
-                    <ul>
-                        <li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
-                        <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
+                   {this.renderNav(this.props.nav)}
                 </nav>
+
                 <div>
                     <ReactModal
                         isOpen={this.state.showModal}
                         contentLabel="add or edit child profile"
                         className="edit-modal"
                     >
+
                         <button
                             type="button"
                             className="circular ui icon button"
@@ -52,6 +73,7 @@ class Nav extends React.Component {
                             }>
                             <span className="profile-form-close-button">X</span>
                         </button>
+
                         <form
                             className="ui big inverted form edit-profile-form"
                             action="/parent/child/:id"

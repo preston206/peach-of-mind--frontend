@@ -77,7 +77,7 @@ class ProfileManager extends React.Component {
 
         return (
             <div>
-                <Nav pid={this.props.match.params.pid} />
+                <Nav pid={this.props.match.params.pid} nav="profileMgrNav" />
                 <div className="ui center aligned container pad-8em">
                     <h1 id="profile-manager-header">Profile Manager</h1>
                     <p>Select a profile</p>

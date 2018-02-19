@@ -25,7 +25,7 @@ class EditAllergen extends React.Component {
     render() {
         return (
             <div>
-                <Nav pid={this.props.match.params.pid} />
+                <Nav pid={this.props.match.params.pid} nav="allergenNav" />
                 <div>
                     <h1>Allergen Info</h1>
                     <form
