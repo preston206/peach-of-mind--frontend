@@ -162,7 +162,7 @@ export const addAllergen = (parent, child, allergen) => {
 };
 
 // edit allergen details for specific child profile
-export const editAllergen = (parent, child, allergen) => {
+export const editAllergen = (parent, child, allergen, allergenValues) => {
 
     const endpoint = 'allergens';
     // const pid = '/5a85d2f13b2f32310c0d1705';
@@ -172,7 +172,7 @@ export const editAllergen = (parent, child, allergen) => {
     const cid = child;
     const aid = allergen;
 
-    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`, allergenValues)
         .then(response => response.data)
         .catch(error => console.log(error));
 

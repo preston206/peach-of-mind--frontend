@@ -4,22 +4,32 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // actions
-import { getAllergen } from '../actions';
+import { getAllergen, editAllergen } from '../actions';
 
 // components
 import Nav from './nav';
 
 class EditAllergen extends React.Component {
 
-    componentWillMount() {
-        const pid = this.props.match.params.pid;
-        const cid = this.props.match.params.cid;
-        const aid = this.props.match.params.aid;
-        this.props.dispatch(getAllergen(pid, cid, aid));
+    state = {
+        pid: this.props.match.params.pid,
+        cid: this.props.match.params.cid,
+        aid: this.props.match.params.aid
     }
 
-    onSubmit(values) {
-        console.log(values);
+    componentWillMount() {
+        // const pid = this.props.match.params.pid;
+        // const cid = this.props.match.params.cid;
+        // const aid = this.props.match.params.aid;
+        this.props.dispatch(getAllergen(this.state.pid, this.state.cid, this.state.aid));
+    }
+
+    onSubmit(allergen) {
+        console.log(allergen);
+        // const pid = this.props.match.params.pid;
+        // const cid = this.props.match.params.cid;
+        this.props.dispatch(editAllergen(this.state.pid, this.state.cid, this.state.aid, allergen));
+        this.props.history.push(`/${this.state.pid}/${this.state.cid}`);
     }
 
     render() {
@@ -59,7 +69,7 @@ class EditAllergen extends React.Component {
 
                         <div className="field">
                             <label htmlFor="reaction-details">Details:</label>
-                            <Field component="textarea" name="reaction-details" id="reaction-details" cols="30" rows="10" />
+                            <Field component="textarea" name="details" id="reaction-details" cols="30" rows="10" />
                         </div>
 
                         <button type="submit" className="fluid ui green button">UPDATE</button>
@@ -83,7 +93,7 @@ function mapStateToProps(state) {
             allergen: state.allergens.allergen,
             initialValues: {
                 "allergen": state.allergens.allergen.allergen,
-                "reaction-details": state.allergens.allergen.details,
+                "details": state.allergens.allergen.details,
                 "reaction": state.allergens.allergen.reaction
             }
         }

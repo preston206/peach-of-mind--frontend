@@ -11,10 +11,10 @@ import Nav from './nav';
 
 class AddAllergen extends React.Component {
 
-    onSubmit(values) {
+    onSubmit(allergen) {
         const pid = this.props.match.params.pid;
         const cid = this.props.match.params.cid;
-        this.props.dispatch(addAllergen(pid, cid, values));
+        this.props.dispatch(addAllergen(pid, cid, allergen));
         this.props.history.push(`/${pid}/${cid}`);
     }
 
