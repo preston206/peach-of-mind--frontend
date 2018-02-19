@@ -59,7 +59,7 @@ export const addChild = (parent, childName) => {
 };
 
 // edit child profile
-export const editChild = (parent, child) => {
+export const editChild = (parent, child, childName) => {
 
     const endpoint = 'children';
     // const pid = '/5a85d2f13b2f32310c0d1705';
@@ -68,7 +68,7 @@ export const editChild = (parent, child) => {
     const cid = child;
 
     // send put with axios
-    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}`)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}`, childName)
         .then(response => response.data)
         .catch(error => console.log(error));
 

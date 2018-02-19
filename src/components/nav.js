@@ -3,6 +3,10 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// actions
+import { editChild } from '../actions';
+
+// react modal package
 import ReactModal from 'react-modal';
 
 // importing image
@@ -14,8 +18,9 @@ class Nav extends React.Component {
         showModal: false
     };
 
-    onSubmit(values) {
-        console.log(values);
+    onSubmit(childName) {
+        this.props.dispatch(editChild(this.props.pid, this.props.cid, childName));
+        this.handleCloseModal();
     }
 
     handleOpenModal() {
@@ -43,12 +48,6 @@ class Nav extends React.Component {
 
     render() {
 
-        const profileProp = this.props.profile || null;
-        const allergenProp = this.props.allergen || null;
-
-
-
-
         return (
             <header>
                 <img id="logo" src={peach} alt="Peach of Mind Logo" />
@@ -56,7 +55,7 @@ class Nav extends React.Component {
 
                 <nav>
                     <a href="#" id="menu-icon">&#9776;</a>
-                   {this.renderNav(this.props.nav)}
+                    {this.renderNav(this.props.nav)}
                 </nav>
 
                 <div>
@@ -92,10 +91,6 @@ class Nav extends React.Component {
         )
     }
 };
-
-
-
-// export default Nav;
 
 function mapStateToProps(state) {
     return {
