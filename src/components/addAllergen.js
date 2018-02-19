@@ -14,7 +14,7 @@ class AddAllergen extends React.Component {
     render() {
         return (
             <div>
-                <Nav />
+                <Nav pid={this.props.match.params.pid} />
                 <div>
                     <h1>Allergen Info</h1>
                     <form

@@ -36,7 +36,7 @@ class ProfileManager extends React.Component {
     }
 
     render() {
-        console.log("props from profile mgr component:", this.props.match);
+        // console.log("props from profile mgr component:", this.props.match);
         
         const renderChildren = children => (
             children ?
@@ -50,7 +50,7 @@ class ProfileManager extends React.Component {
         
         return (
             <div>
-                <Nav />
+                <Nav pid={this.props.match.params.pid} />
                 <div className="ui center aligned container pad-8em">
                     <h1 id="profile-manager-header">Profile Manager</h1>
                     <p>Select a profile</p>

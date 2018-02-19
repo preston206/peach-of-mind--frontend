@@ -59,10 +59,10 @@ class Nav extends React.Component {
                             onSubmit={this.props.handleSubmit(values => this.onSubmit(values)
                             )}>
                             <div className="field">
-                                <label htmlFor="allergen-input">Name:</label>
-                                <Field component="input" type="text" name="allergen" id="allergen-input" />
+                                <label htmlFor="child-name-input">Name:</label>
+                                <Field component="input" type="text" name="childName" id="child-name-input" />
                             </div>
-                            <button type="submit" className="fluid ui green button">SUBMIT</button>
+                            <button type="submit" className="fluid ui green button">UPDATE</button>
                         </form>
                     </ReactModal>
                 </div>
@@ -71,9 +71,7 @@ class Nav extends React.Component {
     }
 };
 
-Nav = reduxForm({
-    form: 'navForm'
-})(Nav);
+
 
 // export default Nav;
 
@@ -82,5 +80,10 @@ function mapStateToProps(state) {
         parent: state.children
     }
 };
+
+Nav = reduxForm({
+    form: 'navForm',
+    enableReinitialize: true
+})(Nav);
 
 export default connect(mapStateToProps)(Nav);
