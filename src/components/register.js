@@ -40,7 +40,7 @@ class Register extends React.Component {
                         <button type="submit" className="fluid ui green button btn-margin-bottom">REGISTER</button>
 
                         <Link to="/login">
-                            <button type="submit" className="fluid ui grey button">GO TO LOGIN</button>
+                            <button type="button" className="fluid ui grey button">GO TO LOGIN</button>
                         </Link>
                     </form>
                 </div >

@@ -15,86 +15,167 @@ class Profile extends React.Component {
         this.props.dispatch(getChildren(pid));
     }
 
+    componentWillUpdate() {
+        const pid = this.props.match.params.pid;
+        this.props.dispatch(getChildren(pid));
+    }
+
+    renderAllergies = allergies => (
+        allergies.length > 0 ?
+            allergies.map(allergen => {
+                const dateFromMongoDB = allergen.updatedAt ? allergen.updatedAt : allergen.added;
+                const month = dateFromMongoDB.substring(5, 7);
+                const day = dateFromMongoDB.substring(8, 10);
+
+                const monthNumberToWord = month => {
+                    switch (month) {
+                        case "01":
+                            return "Jan"
+                        case "02":
+                            return "Feb"
+                        case "03":
+                            return "Mar"
+                        case "04":
+                            return "Apr"
+                        case "05":
+                            return "May"
+                        case "06":
+                            return "Jun"
+                        case "07":
+                            return "Jul"
+                        case "08":
+                            return "Aug"
+                        case "09":
+                            return "Sep"
+                        case "10":
+                            return "Oct"
+                        case "11":
+                            return "Nov"
+                        case "12":
+                            return "Dec"
+                        default:
+                            break;
+                    };
+                };
+
+                const allergenReaction = allergen.reaction === "safe" ?
+                    <div className="ui green inverted segment">
+                        <span className="allergen-name">{allergen.allergen}</span>
+                    </div>
+                    :
+                    <div className="ui red inverted segment">
+                        <span className="allergen-name">{allergen.allergen}</span>
+                    </div>;
+
+                return (
+                    <div className="ui segments" key={allergen._id}>
+
+                        {allergenReaction}
+
+                        <div className="ui horizontal segments">
+                            <div className="ui grey inverted segment">
+                                <span className="allergen-reaction">{allergen.reaction}</span>
+                                <span className="allergen-date">{`${monthNumberToWord(month)} ${day}`}</span>
+                            </div>
+
+                            <div className="ui grey inverted segment">
+                                <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/${allergen._id}/edit`}>
+                                    <i className="setting icon" title="remove this allergen"></i>
+                                    <span className="allergen-edit"></span>
+                                </Link>
+                                <span className="allergen-delete">
+                                    <i className="remove icon"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            )
+            : <div className="ui segment"><p>You haven't added any allergies yet.</p></div>
+    )
+
     render() {
+        // console.log("props from profile:", this.props.match);
 
         const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
         const allergies = child.allergies;
         const childName = child.child;
 
-        const renderAllergies = allergies => (
-            allergies.length > 0 ?
-                allergies.map(allergen => {
-                    const dateFromMongoDB = allergen.updatedAt ? allergen.updatedAt : allergen.added;
-                    const month = dateFromMongoDB.substring(5, 7);
-                    const day = dateFromMongoDB.substring(8, 10);
+        // const renderAllergies = allergies => (
+        //     allergies.length > 0 ?
+        //         allergies.map(allergen => {
+        //             const dateFromMongoDB = allergen.updatedAt ? allergen.updatedAt : allergen.added;
+        //             const month = dateFromMongoDB.substring(5, 7);
+        //             const day = dateFromMongoDB.substring(8, 10);
 
-                    const monthNumberToWord = month => {
-                        switch (month) {
-                            case "01":
-                                return "Jan"
-                            case "02":
-                                return "Feb"
-                            case "03":
-                                return "Mar"
-                            case "04":
-                                return "Apr"
-                            case "05":
-                                return "May"
-                            case "06":
-                                return "Jun"
-                            case "07":
-                                return "Jul"
-                            case "08":
-                                return "Aug"
-                            case "09":
-                                return "Sep"
-                            case "10":
-                                return "Oct"
-                            case "11":
-                                return "Nov"
-                            case "12":
-                                return "Dec"
-                            default:
-                                break;
-                        };
-                    };
+        //             const monthNumberToWord = month => {
+        //                 switch (month) {
+        //                     case "01":
+        //                         return "Jan"
+        //                     case "02":
+        //                         return "Feb"
+        //                     case "03":
+        //                         return "Mar"
+        //                     case "04":
+        //                         return "Apr"
+        //                     case "05":
+        //                         return "May"
+        //                     case "06":
+        //                         return "Jun"
+        //                     case "07":
+        //                         return "Jul"
+        //                     case "08":
+        //                         return "Aug"
+        //                     case "09":
+        //                         return "Sep"
+        //                     case "10":
+        //                         return "Oct"
+        //                     case "11":
+        //                         return "Nov"
+        //                     case "12":
+        //                         return "Dec"
+        //                     default:
+        //                         break;
+        //                 };
+        //             };
 
-                    const allergenReaction = allergen.reaction === "safe" ?
-                        <div className="ui green inverted segment">
-                            <span className="allergen-name">{allergen.allergen}</span>
-                        </div>
-                        :
-                        <div className="ui red inverted segment">
-                            <span className="allergen-name">{allergen.allergen}</span>
-                        </div>;
+        //             const allergenReaction = allergen.reaction === "safe" ?
+        //                 <div className="ui green inverted segment">
+        //                     <span className="allergen-name">{allergen.allergen}</span>
+        //                 </div>
+        //                 :
+        //                 <div className="ui red inverted segment">
+        //                     <span className="allergen-name">{allergen.allergen}</span>
+        //                 </div>;
 
-                    return (
-                        <div className="ui segments" key={allergen._id}>
+        //             return (
+        //                 <div className="ui segments" key={allergen._id}>
 
-                            {allergenReaction}
+        //                     {allergenReaction}
 
-                            <div className="ui horizontal segments">
-                                <div className="ui grey inverted segment">
-                                    <span className="allergen-reaction">{allergen.reaction}</span>
-                                    <span className="allergen-date">{`${monthNumberToWord(month)} ${day}`}</span>
-                                </div>
+        //                     <div className="ui horizontal segments">
+        //                         <div className="ui grey inverted segment">
+        //                             <span className="allergen-reaction">{allergen.reaction}</span>
+        //                             <span className="allergen-date">{`${monthNumberToWord(month)} ${day}`}</span>
+        //                         </div>
 
-                                <div className="ui grey inverted segment">
-                                    <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/${allergen._id}/edit`}>
-                                        <i className="setting icon" title="remove this allergen"></i>
-                                        <span className="allergen-edit"></span>
-                                    </Link>
-                                    <span className="allergen-delete">
-                                        <i className="remove icon"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    )
-                }
-                )
-                : <div className="ui segment"><p>You haven't added any allergies yet.</p></div>
-        )
+        //                         <div className="ui grey inverted segment">
+        //                             <Link to={`/${this.props.match.params.pid}/${this.props.match.params.cid}/${allergen._id}/edit`}>
+        //                                 <i className="setting icon" title="remove this allergen"></i>
+        //                                 <span className="allergen-edit"></span>
+        //                             </Link>
+        //                             <span className="allergen-delete">
+        //                                 <i className="remove icon"></i>
+        //                             </span>
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             )
+        //         }
+        //         )
+        //         : <div className="ui segment"><p>You haven't added any allergies yet.</p></div>
+        // )
 
 
 
@@ -116,7 +197,7 @@ class Profile extends React.Component {
                             </Link>
                         </div>
 
-                        {renderAllergies(allergies)}
+                        {this.renderAllergies(allergies)}
 
                     </div>
                 </div>

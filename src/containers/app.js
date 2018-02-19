@@ -37,12 +37,12 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
+                    <Route path="/profilemgr/:pid" exact component={ProfileManager} />
                     <Route path="/:pid/:cid/allergen/add" component={AddAllergen} />
                     <Route path="/:pid/:cid/:aid/edit" component={EditAllergen} />
                     <Route path="/:pid/:cid" component={Profile} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
-                    <Route path="/:pid" component={ProfileManager} />
                     <Route path="/" exact component={Login} />
                     <Route component={Http404} />
                 </Switch>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const Http404 = () => {
     return (
         <div>
-            <Nav pid={this.props.match.params.pid} />
+            <Nav />
             <div className="ui center aligned container pad-10em">
                 <h1>404: </h1>
                 <h2>we are unable to find that resource.</h2>

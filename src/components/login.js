@@ -32,7 +32,7 @@ class Login extends React.Component {
                         </div>
                         <button type="submit" className="fluid ui green button">LOGIN</button>
                         <Link to="/register">
-                            <button type="submit" className="fluid ui grey button">GO TO REGISTER</button>
+                            <button type="button" className="fluid ui grey button">GO TO REGISTER</button>
                         </Link>
                     </form>
                 </div>

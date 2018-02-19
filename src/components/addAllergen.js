@@ -3,12 +3,19 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// actions
+import { addAllergen } from '../actions';
+
 // components
 import Nav from './nav';
 
 class AddAllergen extends React.Component {
+
     onSubmit(values) {
-        console.log(values);
+        const pid = this.props.match.params.pid;
+        const cid = this.props.match.params.cid;
+        this.props.dispatch(addAllergen(pid, cid, values));
+        this.props.history.push(`/${pid}/${cid}`);
     }
 
     render() {
@@ -47,7 +54,7 @@ class AddAllergen extends React.Component {
 
                         <div className="field">
                             <label htmlFor="reaction-details">Details:</label>
-                            <Field component="textarea" name="reaction-details" id="reaction-details" cols="30" rows="10" />
+                            <Field component="textarea" name="details" id="reaction-details" cols="30" rows="10" />
                         </div>
 
                         <button type="submit" className="fluid ui green button">SUBMIT</button>
@@ -55,6 +62,7 @@ class AddAllergen extends React.Component {
                             <button type="button" id="cancel-allergen" className="fluid ui grey button">CANCEL</button>
                         </Link>
                     </form>
+
                 </div >
             </div >
         )
@@ -64,8 +72,6 @@ class AddAllergen extends React.Component {
 AddAllergen = reduxForm({
     form: 'addAllergen'
 })(AddAllergen);
-
-// export default AddAllergen;
 
 function mapStateToProps(state) {
     return {

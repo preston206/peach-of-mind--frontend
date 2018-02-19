@@ -143,7 +143,7 @@ export const getAllergen = (parent, child, allergen) => {
 };
 
 // add new allergen for specific child profile
-export const addAllergen = (parent, child) => {
+export const addAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
     // const pid = '/5a85d2f13b2f32310c0d1705';
@@ -151,7 +151,7 @@ export const addAllergen = (parent, child) => {
     const pid = parent;
     const cid = child;
 
-    const request = axios.post(`${baseURL}${endpoint}/${pid}/${cid}`)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}/${cid}`, allergen)
         .then(response => response.data)
         .catch(error => console.log(error));
 
