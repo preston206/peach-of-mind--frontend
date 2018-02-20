@@ -14,23 +14,44 @@ class Profile extends React.Component {
         pid: this.props.match.params.pid,
         cid: this.props.match.params.cid,
         allergyArray: [],
-        childName: ''
+        childName: 'TEST'
     }
 
     componentWillMount() {
-        if (this.state.allergyArray.length < 1) {
-            const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
-            const allergies = child.allergies;
-            const childName = child.child;
-            this.setState({ childName, allergyArray: allergies });
-        }
+        // if (this.state.allergyArray.length < 1) {
+        // const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
+        // const allergies = child.allergies;
+        //     const childName = child.child;
+        //     this.setState({ childName, allergyArray: allergies });
+        // }
+        // console.log("will mount");
+        // console.log("prev state and props--", prevState, props);
+        // this.forceUpdate();
 
-        return this.props.dispatch(getChildren(this.state.pid));
+        // return this.props.dispatch(getChildren(this.state.pid));
+
+        // if (this.state.allergyArray.length < 1) {
+
+        this.props.dispatch(getChildren(this.state.pid))
+            .then(res => {
+                console.log("res", res);
+                const child = res.payload.find(child => child._id === this.props.match.params.cid);
+                console.log("child, allergies--", child, child.allergies);
+                if (this.state.allergyArray.length !== child.allergies.length) return this.setState({ allergyArray: child.allergies });
+            })
+            .catch(error => console.log(error));
+        // }
+        // return this.props.dispatch(getChildren(this.state.pid));
+
     }
 
-    componentWillUpdate() {
-        return this.props.dispatch(getChildren(this.state.pid));
-    }
+    // componentWillUpdate() {
+    //     return this.props.dispatch(getChildren(this.state.pid));
+    // }
+
+    // componentDidUpdate(prevState) {
+    //     console.log("prev state and props-", prevState);
+    // }
 
     updateStateWithNewAllergyArray(newAllergyArray) {
         return this.setState({ allergyArray: newAllergyArray });
