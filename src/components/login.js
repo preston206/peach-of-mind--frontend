@@ -6,9 +6,20 @@ import { connect } from 'react-redux';
 // components
 import LandingHeader from './landingHeader';
 
+// actions
+import { login } from '../actions';
+
 class Login extends React.Component {
-    onSubmit(values) {
-        console.log(values);
+    onSubmit(parent) {
+        console.log(parent);
+        return this.props
+            .dispatch(login(parent))
+            .then(res => {
+                if (!res) return Promise.reject({ msg: "unable to login" });
+                const pid = res.payload.id;
+                this.props.history.push(`/profilemgr/${pid}`);
+           })
+            .catch(err => console.log(err));
     }
 
     render() {
