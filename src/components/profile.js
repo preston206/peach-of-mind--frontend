@@ -13,14 +13,27 @@ class Profile extends React.Component {
     state = {
         pid: this.props.match.params.pid,
         cid: this.props.match.params.cid,
+        allergyArray: [],
+        childName: ''
     }
 
     componentWillMount() {
+        if (this.state.allergyArray.length < 1) {
+            const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
+            const allergies = child.allergies;
+            const childName = child.child;
+            this.setState({ childName, allergyArray: allergies });
+        }
+
         return this.props.dispatch(getChildren(this.state.pid));
     }
 
     componentWillUpdate() {
         return this.props.dispatch(getChildren(this.state.pid));
+    }
+
+    updateStateWithNewAllergyArray(newAllergyArray) {
+        return this.setState({ allergyArray: newAllergyArray });
     }
 
     deleteAllergen = id => {
@@ -30,11 +43,11 @@ class Profile extends React.Component {
         }
     }
 
-    // this render method is a ternary
-    // when react renders for the first time, often times the allergies array is empty which could crash the app
-    renderAllergies = allergies => (
-        allergies.length > 0 ?
-            allergies.map(allergen => {
+    renderAllergies = allergies => {
+        let newArray;
+        if (allergies.length > 0) {
+
+            newArray = allergies.map(allergen => {
 
                 // add the allergen ID to a variable for attaching to the delete fn
                 const aid = allergen._id;
@@ -85,7 +98,7 @@ class Profile extends React.Component {
                         <span className="allergen-name">{allergen.allergen}</span>
                     </div>;
 
-                // building the allergen segment
+                // building the allergen segment and returning JSX
                 return (
                     <div className="ui segments" key={allergen._id}>
 
@@ -111,14 +124,47 @@ class Profile extends React.Component {
                 )
             }
             )
-            : <div className="ui segment"><p>You haven't added any allergies yet.</p></div>
-    )
+        }
+
+        else { return (<div className="ui segment"><p>You haven't added any allergies yet.</p></div>) }
+
+        return newArray;
+    }
+
+    sortByUnsafe(allergies) {
+        const unsafe = [];
+        const safe = [];
+        allergies.forEach(allergen => {
+            if (allergen.reaction === "unsafe") {
+                unsafe.push(allergen);
+            }
+            else {
+                safe.push(allergen);
+            }
+        })
+        const combinedReactions = unsafe.concat(safe);
+
+        this.updateStateWithNewAllergyArray(combinedReactions);
+    }
+
+    sortBySafe(allergies) {
+        const unsafe = [];
+        const safe = [];
+        allergies.forEach(allergen => {
+            if (allergen.reaction === "unsafe") {
+                unsafe.push(allergen);
+            }
+            else {
+                safe.push(allergen);
+            }
+        })
+        const combinedReactions = unsafe.concat(safe);
+        const reversedCombinedReactions = combinedReactions.reverse();
+
+        this.updateStateWithNewAllergyArray(reversedCombinedReactions);
+    }
 
     render() {
-        const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
-        const allergies = child.allergies;
-        const childName = child.child;
-
         return (
             <div>
                 <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" />
@@ -126,18 +172,18 @@ class Profile extends React.Component {
                     <div id="allergies-container" className="ui black inverted segment">
 
                         <div className="ui center aligned secondary inverted segment">
-                            <h1 id="profile-header">{childName}</h1>
+                            <h1 id="profile-header">{this.state.childName}</h1>
                         </div>
 
                         <div className="three ui buttons">
-                            <button className="mini ui inverted button">Sort by Reaction</button>
-                            <button className="mini ui inverted button">Sort by Safe</button>
+                            <button className="mini ui inverted button" onClick={allergen => this.sortByUnsafe(this.state.allergyArray)}>Sort by Reaction</button>
+                            <button className="mini ui inverted button" onClick={allergen => this.sortBySafe(this.state.allergyArray)}>Sort by Safe</button>
                             <Link to={`/${this.state.pid}/${this.state.cid}/allergen/add`}>
                                 <button className="mini ui inverted button">Add Allergen</button>
                             </Link>
                         </div>
 
-                        {this.renderAllergies(allergies)}
+                        {this.renderAllergies(this.state.allergyArray)}
 
                     </div>
                 </div>

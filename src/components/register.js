@@ -3,12 +3,27 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// axios
+// import axios from 'axios';
+
 // components
 import LandingHeader from './landingHeader';
 
+// actions
+import { register } from '../actions';
+
 class Register extends React.Component {
-    onSubmit(values) {
-        console.log(values);
+
+    onSubmit(parent) {
+        console.log(parent);
+        return this.props
+            .dispatch(register(parent))
+            .then(res => {
+                if (!res) return Promise.reject({ msg: "unable to register" });
+                const pid = res.payload.id;
+                this.props.history.push(`/profilemgr/${pid}`);
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
@@ -52,8 +67,6 @@ class Register extends React.Component {
 Register = reduxForm({
     form: 'register'
 })(Register);
-
-// export default Register;
 
 function mapStateToProps(state) {
     return {

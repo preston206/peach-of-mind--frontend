@@ -2,7 +2,6 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 import ReactModal from 'react-modal';
 
@@ -20,20 +19,16 @@ class ProfileManager extends React.Component {
     };
 
     componentWillMount() {
-        // const pid = this.props.match.params.pid;
         return this.props.dispatch(getChildren(this.state.pid));
     }
 
     componentWillUpdate() {
-        // const pid = this.props.match.params.pid;
         return this.props.dispatch(getChildren(this.state.pid));
     }
 
     onSubmit(child) {
-        // const pid = this.props.match.params.pid;
         this.props.dispatch(addChild(this.state.pid, child));
         this.handleCloseModal();
-        // this.props.history.push(`/profilemgr/${this.state.pid}`);
     }
 
     handleOpenModal() {
@@ -50,7 +45,6 @@ class ProfileManager extends React.Component {
     // this method was originally exactly like the ternary in profile.js but it wasnt displaying...
     // the msg if no chidlren were present- this nested condition solved the problem
     renderChildren = children => {
-        // console.log("children-", children);
 
         if (children) {
 

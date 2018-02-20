@@ -207,8 +207,52 @@ export const deleteAllergen = (parent, child, allergen) => {
 // // // USER\PARENT ACTIONS // // //
 
 // register
-// const endpoint = 'parents';
-// const pid = '/5a85d2f13b2f32310c0d1705';
+export const register = (parent) => {
+
+    // console.log("parent-", parent);
+    const endpoint = 'parents/register';
+    // const request = axios.post(`${baseURL}${endpoint}`, parent)
+
+    const request = axios.post(`${baseURL}${endpoint}`, parent)
+        .then(response => response.data)
+        .catch(error => console.log(error));
+
+    return {
+        type: 'REGISTER',
+        payload: request
+    }
+
+    // return (dispatch) => {
+    //     request
+    //         .then(response => response.data)
+    //         .catch(error => console.log(error));
+
+    //     dispatch({
+    //         type: 'REGISTER',
+    //         payload: request
+    //     })
+    // }
+
+
+    // return (dispatch) => {
+    //     request
+    //         .then(response => {
+
+    //             dispatch({
+    //                 type: 'REGISTER',
+    //                 payload: response
+    //             })
+    //         })
+    //         .catch(error => console.log(error));
+    // }
+
+
+    // return {
+    //     type: 'REGISTER',
+    //     payload: request
+    // }
+};
+
 
 // login
 
