@@ -212,8 +212,10 @@ export const register = (parent) => {
     const endpoint = 'parents/register';
 
     const request = axios.post(`${baseURL}${endpoint}`, parent)
-        .then(response => response.data)
-        .catch(error => console.log(error));
+        .then(response => response)
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'REGISTER',
@@ -228,13 +230,9 @@ export const login = (parent) => {
     const endpoint = 'parents/login';
 
     const request = axios.post(`${baseURL}${endpoint}`, parent)
-        .then(response => {
-            return response
-        })
+        .then(response => response)
         .catch(error => {
-            if (error) {
-                return Promise.reject({ error: "401" });
-            };
+            if (error) return Promise.reject({ error });
         });
 
     return {

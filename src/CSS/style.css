@@ -16,6 +16,11 @@ body {
     border-bottom-right-radius: 3px!important;
 }
 
+#login-error-message, #register-error-message {
+    background: rgba(254, 254, 254, 0.9);
+    margin-top: 15%;
+}
+
 #profile-manager-header {
     color: black;
 }
@@ -176,18 +181,15 @@ a:hover {
         background-color: rgba(0, 0, 0, 0.6);
         padding: 4px;
     }
-    .login-modal {
+    .register-login-modal {
         position: absolute;
         top: 20%;
         left: 2%;
         right: 2%;
         bottom: 30%;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.7);
         padding: 2%;
-    }
-    #login-message {
-        margin-top: 16%;
-        color: maroon;
+        color: rgb(218, 0, 0);
     }
     .add-profile-form {
         width: 90%;

@@ -15,7 +15,8 @@ import { login } from '../actions';
 class Login extends React.Component {
 
     state = {
-        showModal: false
+        showModal: false,
+        loginErrorMsg: ''
     };
 
     onSubmit(parent) {
@@ -25,16 +26,20 @@ class Login extends React.Component {
             .then(res => {
                 console.log("res--", res);
                 if (res.payload.error) {
-                    this.handleOpenModal();
-                    return Promise.reject({ error: 'Wrong Credentials' })
+
+                    this.setState({ loginErrorMsg: "invalid credentials" })
+
+                    setTimeout(() => {
+                        this.handleOpenModal();
+                    }, 200);
+
+                    return Promise.reject({ error: 'invalid credentials' })
                 }
 
                 if (!res.payload) return Promise.reject({ msg: "unable to login" });
                 return this.props.history.push(`/profilemgr/${res.payload.data.id}`);
             })
-            .catch(error => {
-                return console.log(error);
-            });
+            .catch(error => console.log(error));
     }
 
     handleOpenModal() {
@@ -58,11 +63,11 @@ class Login extends React.Component {
                         )}>
                         <div className="required field">
                             <label htmlFor="username">Username</label>
-                            <Field component="input" type="text" name="username" id="username" placeholder="password" required autoFocus />
+                            <Field component="input" type="text" name="username" id="username" placeholder="password" minLength="4" required autoFocus />
                         </div>
                         <div className="required field">
                             <label htmlFor="password">Password</label>
-                            <Field component="input" type="password" name="password" id="password" placeholder="password" required />
+                            <Field component="input" type="password" name="password" id="password" placeholder="password" minLength="8" maxLength="72" required />
                         </div>
                         <button type="submit" className="fluid ui green button">LOGIN</button>
                         <Link to="/register">
@@ -75,7 +80,7 @@ class Login extends React.Component {
                     <ReactModal
                         isOpen={this.state.showModal}
                         contentLabel="there has been an authentication problem"
-                        className="login-modal"
+                        className="register-login-modal"
                     >
 
                         <button
@@ -86,9 +91,10 @@ class Login extends React.Component {
                             <span className="profile-form-close-button">X</span>
                         </button>
 
-                        <div className="ui segment" id="login-message">
+                        <div className="ui segment" id="login-error-message">
                             <h1>Login Error</h1>
-                            <h2>please try again</h2>
+                            <p>{this.state.loginErrorMsg}</p>
+                            <p>please try again</p>
                         </div>
                     </ReactModal>
                 </div>

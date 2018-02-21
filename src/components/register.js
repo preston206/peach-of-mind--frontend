@@ -3,8 +3,8 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// axios
-// import axios from 'axios';
+// react modal package
+import ReactModal from 'react-modal';
 
 // components
 import LandingHeader from './landingHeader';
@@ -14,16 +14,42 @@ import { register } from '../actions';
 
 class Register extends React.Component {
 
+    state = {
+        showModal: false,
+        regErrorMsg: ''
+    };
+
     onSubmit(parent) {
         console.log(parent);
         return this.props
             .dispatch(register(parent))
             .then(res => {
+                // console.log("res--", res);
                 if (!res) return Promise.reject({ msg: "unable to register" });
-                const pid = res.payload.id;
-                this.props.history.push(`/profilemgr/${pid}`);
+                if (res.payload.error) {
+
+                    res.payload.error.response.status === 500 ?
+                        this.setState({ regErrorMsg: "that email address already exists in our database" })
+                        :
+                        this.setState({ regErrorMsg: res.payload.error.response.data.message });
+
+                    setTimeout(() => {
+                        this.handleOpenModal();
+                    }, 300);
+
+                    return Promise.reject({ msg: "registration error" });
+                }
+                this.props.history.push(`/profilemgr/${res.payload.data.id}`);
             })
             .catch(err => console.log(err));
+    }
+
+    handleOpenModal() {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
     }
 
     render() {
@@ -41,15 +67,15 @@ class Register extends React.Component {
 
                         <div className="required field">
                             <label htmlFor="email">Email</label>
-                            <Field component="input" type="email" name="email" id="email" required autoFocus />
+                            <Field component="input" type="email" name="email" id="email" placeholder="email" required autoFocus />
                         </div>
                         <div className="required field">
                             <label htmlFor="username">Username</label>
-                            <Field component="input" type="text" name="username" id="username" required />
+                            <Field component="input" type="text" name="username" id="username" placeholder="username" minLength="4" required />
                         </div>
                         <div className="required field">
                             <label htmlFor="password">Password</label>
-                            <Field component="input" type="password" name="password" id="password" required />
+                            <Field component="input" type="password" name="password" id="password" placeholder="password" minLength="8" maxLength="72" required />
                         </div>
 
                         <button type="submit" className="fluid ui green button btn-margin-bottom">REGISTER</button>
@@ -59,6 +85,29 @@ class Register extends React.Component {
                         </Link>
                     </form>
                 </div >
+
+                <div>
+                    <ReactModal
+                        isOpen={this.state.showModal}
+                        contentLabel="there has been a registration problem"
+                        className="register-login-modal"
+                    >
+
+                        <button
+                            type="button"
+                            className="circular ui icon button"
+                            onClick={event => this.handleCloseModal(event)
+                            }>
+                            <span className="profile-form-close-button">X</span>
+                        </button>
+
+                        <div className="ui segment" id="register-error-message">
+                            <h1>Registration Error</h1>
+                            <p>{this.state.regErrorMsg}</p>
+                            <p>please try again</p>
+                        </div>
+                    </ReactModal>
+                </div>
             </div >
         )
     }
