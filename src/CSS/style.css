@@ -52,6 +52,7 @@ body {
     /* width: 33.3%; */
 }
 
+
 /* .large-font {
     font-size: 6em;
     }
@@ -174,6 +175,19 @@ a:hover {
         bottom: 45px;
         background-color: rgba(0, 0, 0, 0.6);
         padding: 4px;
+    }
+    .login-modal {
+        position: absolute;
+        top: 20%;
+        left: 2%;
+        right: 2%;
+        bottom: 30%;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 2%;
+    }
+    #login-message {
+        margin-top: 16%;
+        color: maroon;
     }
     .add-profile-form {
         width: 90%;

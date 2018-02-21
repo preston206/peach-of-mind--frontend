@@ -228,8 +228,14 @@ export const login = (parent) => {
     const endpoint = 'parents/login';
 
     const request = axios.post(`${baseURL}${endpoint}`, parent)
-        .then(response => response.data)
-        .catch(error => console.log(error));
+        .then(response => {
+            return response
+        })
+        .catch(error => {
+            if (error) {
+                return Promise.reject({ error: "401" });
+            };
+        });
 
     return {
         type: 'LOGIN',

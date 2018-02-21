@@ -3,6 +3,9 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+// react modal package
+import ReactModal from 'react-modal';
+
 // components
 import LandingHeader from './landingHeader';
 
@@ -10,16 +13,36 @@ import LandingHeader from './landingHeader';
 import { login } from '../actions';
 
 class Login extends React.Component {
+
+    state = {
+        showModal: false
+    };
+
     onSubmit(parent) {
         console.log(parent);
         return this.props
             .dispatch(login(parent))
             .then(res => {
-                if (!res) return Promise.reject({ msg: "unable to login" });
-                const pid = res.payload.id;
-                this.props.history.push(`/profilemgr/${pid}`);
-           })
-            .catch(err => console.log(err));
+                console.log("res--", res);
+                if (res.payload.error) {
+                    this.handleOpenModal();
+                    return Promise.reject({ error: 'Wrong Credentials' })
+                }
+
+                if (!res.payload) return Promise.reject({ msg: "unable to login" });
+                return this.props.history.push(`/profilemgr/${res.payload.data.id}`);
+            })
+            .catch(error => {
+                return console.log(error);
+            });
+    }
+
+    handleOpenModal() {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
     }
 
     render() {
@@ -35,11 +58,11 @@ class Login extends React.Component {
                         )}>
                         <div className="required field">
                             <label htmlFor="username">Username</label>
-                            <Field component="input" type="text" name="username" id="username" required autoFocus />
+                            <Field component="input" type="text" name="username" id="username" placeholder="password" required autoFocus />
                         </div>
                         <div className="required field">
                             <label htmlFor="password">Password</label>
-                            <Field component="input" type="password" name="password" id="password" required />
+                            <Field component="input" type="password" name="password" id="password" placeholder="password" required />
                         </div>
                         <button type="submit" className="fluid ui green button">LOGIN</button>
                         <Link to="/register">
@@ -47,21 +70,41 @@ class Login extends React.Component {
                         </Link>
                     </form>
                 </div>
+
+                <div>
+                    <ReactModal
+                        isOpen={this.state.showModal}
+                        contentLabel="there has been an authentication problem"
+                        className="login-modal"
+                    >
+
+                        <button
+                            type="button"
+                            className="circular ui icon button"
+                            onClick={event => this.handleCloseModal(event)
+                            }>
+                            <span className="profile-form-close-button">X</span>
+                        </button>
+
+                        <div className="ui segment" id="login-message">
+                            <h1>Login Error</h1>
+                            <h2>please try again</h2>
+                        </div>
+                    </ReactModal>
+                </div>
             </div>
         )
     }
 };
-
-Login = reduxForm({
-    form: 'login'
-})(Login);
-
-// export default Login;
 
 function mapStateToProps(state) {
     return {
         parent: state.children
     }
 };
+
+Login = reduxForm({
+    form: 'login'
+})(Login);
 
 export default connect(mapStateToProps)(Login);
