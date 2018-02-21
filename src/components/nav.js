@@ -18,9 +18,11 @@ class Nav extends React.Component {
         showModal: false
     };
 
-    onSubmit(childName) {
-        this.props.dispatch(editChild(this.props.pid, this.props.cid, childName));
-        this.handleCloseModal();
+    onSubmit(child) {
+        this.props.dispatch(editChild(this.props.pid, this.props.cid, child))
+            .then(res => this.props.changeChildName(child.childName))
+            .catch(error => console.log(error));
+        this.handleCloseModal()
     }
 
     handleOpenModal() {

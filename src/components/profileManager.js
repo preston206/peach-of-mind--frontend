@@ -15,20 +15,22 @@ class ProfileManager extends React.Component {
 
     state = {
         showModal: false,
-        pid: this.props.match.params.pid
+        pid: this.props.match.params.pid,
+        childrenArray: []
     };
 
     componentWillMount() {
-        return this.props.dispatch(getChildren(this.state.pid));
-    }
-
-    componentWillUpdate() {
-        return this.props.dispatch(getChildren(this.state.pid));
+        this.props.dispatch(getChildren(this.state.pid))
+            .then(res => {
+                this.setState({ childrenArray: res.payload })
+            })
+            .catch(error => console.log(error));
     }
 
     onSubmit(child) {
-        this.props.dispatch(addChild(this.state.pid, child));
-        this.handleCloseModal();
+        this.props.dispatch(addChild(this.state.pid, child))
+            .then(res => this.props.history.push(`/${this.state.pid}/loader`))
+            .catch(error => console.log(error));
     }
 
     handleOpenModal() {
@@ -54,21 +56,12 @@ class ProfileManager extends React.Component {
                         <button type="button" className="massive fluid ui black button">{child.child}</button>
                     </Link>
                 ))
-            }
-            else {
-                return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>);
-            }
+            } else { return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>) }
 
-        }
-        else {
-            return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>);
-        }
+        } else { return (<div className="ui segment"><p>You haven't added any child profiles yet.</p></div>) }
     }
 
     render() {
-
-        const childrenArray = this.props.parent.children;
-
         return (
             <div>
                 <Nav pid={this.props.match.params.pid} nav="profileMgrNav" />
@@ -85,7 +78,7 @@ class ProfileManager extends React.Component {
                         </button>
                     </div>
                     <div id="profile-buttons-container">
-                        {this.renderChildren(childrenArray)}
+                        {this.renderChildren(this.state.childrenArray)}
                     </div>
                 </div>
                 <ReactModal

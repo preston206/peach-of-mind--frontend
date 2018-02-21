@@ -14,53 +14,34 @@ class Profile extends React.Component {
         pid: this.props.match.params.pid,
         cid: this.props.match.params.cid,
         allergyArray: [],
-        childName: 'TEST'
+        childName: ''
     }
 
     componentWillMount() {
-        // if (this.state.allergyArray.length < 1) {
-        // const child = this.props.parent.children.find(child => child._id === this.props.match.params.cid);
-        // const allergies = child.allergies;
-        //     const childName = child.child;
-        //     this.setState({ childName, allergyArray: allergies });
-        // }
-        // console.log("will mount");
-        // console.log("prev state and props--", prevState, props);
-        // this.forceUpdate();
-
-        // return this.props.dispatch(getChildren(this.state.pid));
-
-        // if (this.state.allergyArray.length < 1) {
-
         this.props.dispatch(getChildren(this.state.pid))
             .then(res => {
-                console.log("res", res);
                 const child = res.payload.find(child => child._id === this.props.match.params.cid);
-                console.log("child, allergies--", child, child.allergies);
-                if (this.state.allergyArray.length !== child.allergies.length) return this.setState({ allergyArray: child.allergies });
+                if (this.state.childName !== child.child) this.setState({ childName: child.child });
+                if (this.state.allergyArray.length !== child.allergies.length) this.setState({ allergyArray: child.allergies });
             })
             .catch(error => console.log(error));
-        // }
-        // return this.props.dispatch(getChildren(this.state.pid));
-
     }
-
-    // componentWillUpdate() {
-    //     return this.props.dispatch(getChildren(this.state.pid));
-    // }
-
-    // componentDidUpdate(prevState) {
-    //     console.log("prev state and props-", prevState);
-    // }
 
     updateStateWithNewAllergyArray(newAllergyArray) {
         return this.setState({ allergyArray: newAllergyArray });
+    }
+
+    handleChildNameChange(childName) {
+        console.log(childName);
+        return this.setState({ childName: childName });
     }
 
     deleteAllergen = id => {
         const confirmDelete = window.confirm("delete?");
         if (confirmDelete) {
             this.props.dispatch(deleteAllergen(this.state.pid, this.state.cid, id))
+                .then(res => this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`))
+                .catch(error => console.log(error));
         }
     }
 
@@ -164,7 +145,6 @@ class Profile extends React.Component {
             }
         })
         const combinedReactions = unsafe.concat(safe);
-
         this.updateStateWithNewAllergyArray(combinedReactions);
     }
 
@@ -179,16 +159,14 @@ class Profile extends React.Component {
                 safe.push(allergen);
             }
         })
-        const combinedReactions = unsafe.concat(safe);
-        const reversedCombinedReactions = combinedReactions.reverse();
-
-        this.updateStateWithNewAllergyArray(reversedCombinedReactions);
+        const combinedReactions = safe.concat(unsafe);
+        this.updateStateWithNewAllergyArray(combinedReactions);
     }
 
     render() {
         return (
             <div>
-                <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" />
+                <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" changeChildName={name => this.handleChildNameChange(name)} />
                 <div id="profile-page" className="ui center aligned container pad-9em">
                     <div id="allergies-container" className="ui black inverted segment">
 

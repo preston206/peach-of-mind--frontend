@@ -1,19 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class Loader extends React.Component {
+class ProfileLoader extends React.Component {
     componentWillMount() {
         const pid = this.props.match.params.pid;
         const cid = this.props.match.params.cid;
         setTimeout(() => {
             this.props.history.push(`/${pid}/${cid}`);
-        }, 1600);
+        }, 1400);
     }
     render() {
         return (
             <div className="ui center aligned container pad-10em">
-                <div class="ui active dimmer">
-                    <div class="ui text loader">Processing...</div>
+                <div className="ui active dimmer">
+                    <div className="ui text loader">Processing...</div>
                 </div>
             </div>
         )
@@ -26,4 +26,4 @@ function mapStateToProps(state) {
     }
 };
 
-export default connect(mapStateToProps)(Loader);
+export default connect(mapStateToProps)(ProfileLoader);
