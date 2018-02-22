@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 // react modal package
 import ReactModal from 'react-modal';
 
-// react cookies
-import cookie from 'react-cookies';
-
 // components
 import LandingHeader from './landingHeader';
 
@@ -40,9 +37,6 @@ class Login extends React.Component {
                 }
 
                 if (!res.payload) return Promise.reject({ msg: "unable to login" });
-
-                if (res.payload.data.sid) cookie.save('pom-session', res.payload.data.sid);
-
                 return this.props.history.push(`/profilemgr/${res.payload.data.pid}`);
             })
             .catch(error => console.log(error));

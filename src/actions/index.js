@@ -12,7 +12,7 @@ export const getChildren = (parent) => {
     // const pid = '/5a85d2f13b2f32310c0d1705';
     const pid = parent;
 
-    const request = axios.get(`${baseURL}${endpoint}/${pid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}`, { withCredentials: true })
         .then(response => response.data)
         .catch(error => console.log(error));
 
@@ -230,7 +230,7 @@ export const login = (parent) => {
 
     const endpoint = 'parents/login';
 
-    const request = axios.post(`${baseURL}${endpoint}`, parent)
+    const request = axios.post(`${baseURL}${endpoint}`, parent, { withCredentials: true })
         .then(response => response)
         .catch(error => {
             if (error) return Promise.reject({ error });

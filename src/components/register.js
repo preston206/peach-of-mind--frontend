@@ -53,28 +53,23 @@ class Register extends React.Component {
                             .dispatch(login(parent))
                             .then(res => {
                                 if (res.payload.error) {
-
+                                    // if error send user to login page
+                                    // there was probably a race condition that would be resolved by the time they tried to login
                                     this.props.history.push('/');
-
-                                    return Promise.reject({ error: 'invalid credentials' })
-                                }
-
+                                    return Promise.reject({ error: 'invalid credentials' });
+                                };
+                                // same reason as above- if error send user to login to try again 
                                 if (!res.payload) {
                                     this.props.history.push('/');
                                     return Promise.reject({ msg: "unable to login" });
-                                }
+                                };
 
-                                return this.props.history.push(`/profilemgr/${res.payload.data.id}`);
-                            })
+                                return this.props.history.push(`/profilemgr/${res.payload.data.pid}`);
+                            }) // end nested .then() for login
                             .catch(error => console.log(error));
-
-                    }, 1500);
-                }
-                else {
-                    this.props.history.push('/');
-                }
-
-            })
+                    }, 1500); // end setTimeout
+                } else { this.props.history.push('/'); }
+            }) // end .then()
             .catch(err => console.log(err));
     }
 
