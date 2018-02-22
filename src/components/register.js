@@ -10,7 +10,7 @@ import ReactModal from 'react-modal';
 import LandingHeader from './landingHeader';
 
 // actions
-import { register } from '../actions';
+import { register, login } from '../actions';
 
 class Register extends React.Component {
 
@@ -20,26 +20,60 @@ class Register extends React.Component {
     };
 
     onSubmit(parent) {
-        console.log(parent);
+        // on submit dispatch register action
         return this.props
             .dispatch(register(parent))
             .then(res => {
-                // console.log("res--", res);
+
+                // if no response object reject promise and throw error
                 if (!res) return Promise.reject({ msg: "unable to register" });
+
+                // if response object contains error property reject promise and throw error
                 if (res.payload.error) {
 
+                    // condition for state update depending on if response error status = 500
                     res.payload.error.response.status === 500 ?
                         this.setState({ regErrorMsg: "that email address already exists in our database" })
                         :
                         this.setState({ regErrorMsg: res.payload.error.response.data.message });
 
+                    // wait 200ms for the state to get updated and then fire modal with error msg
                     setTimeout(() => {
                         this.handleOpenModal();
-                    }, 300);
+                    }, 200);
 
                     return Promise.reject({ msg: "registration error" });
                 }
-                this.props.history.push(`/profilemgr/${res.payload.data.id}`);
+
+                // if server returns 201 created then wait 1.5s then dispatch login then transfer to profile page
+                if (res.payload.status === 201) {
+                    setTimeout(() => {
+
+                        return this.props
+                            .dispatch(login(parent))
+                            .then(res => {
+                                if (res.payload.error) {
+
+                                    this.props.history.push('/');
+
+                                    return Promise.reject({ error: 'invalid credentials' })
+                                }
+
+                                if (!res.payload) {
+                                    this.props.history.push('/');
+                                    return Promise.reject({ msg: "unable to login" });
+                                }
+
+                                return this.props.history.push(`/profilemgr/${res.payload.data.id}`);
+                            })
+                            .catch(error => console.log(error));
+
+                    }, 1500);
+                }
+                else {
+                    this.props.history.push('/');
+                }
+
             })
             .catch(err => console.log(err));
     }
