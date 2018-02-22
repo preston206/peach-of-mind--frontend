@@ -15,7 +15,12 @@ class AddAllergen extends React.Component {
         const pid = this.props.match.params.pid;
         const cid = this.props.match.params.cid;
         this.props.dispatch(addAllergen(pid, cid, allergen))
-            .then(res => this.props.history.push(`/${pid}/${cid}/loader`))
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
+                this.props.history.push(`/${pid}/${cid}/loader`)
+            })
             .catch(error => console.log(error));
     }
 

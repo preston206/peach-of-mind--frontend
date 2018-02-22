@@ -22,6 +22,9 @@ class ProfileManager extends React.Component {
     componentWillMount() {
         this.props.dispatch(getChildren(this.state.pid))
             .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
                 this.setState({ childrenArray: res.payload })
             })
             .catch(error => console.log(error));
@@ -29,7 +32,12 @@ class ProfileManager extends React.Component {
 
     onSubmit(child) {
         this.props.dispatch(addChild(this.state.pid, child))
-            .then(res => this.props.history.push(`/${this.state.pid}/loader`))
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
+                this.props.history.push(`/${this.state.pid}/loader`)
+            })
             .catch(error => console.log(error));
     }
 

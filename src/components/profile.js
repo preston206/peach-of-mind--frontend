@@ -20,6 +20,9 @@ class Profile extends React.Component {
     componentWillMount() {
         this.props.dispatch(getChildren(this.state.pid))
             .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
                 const child = res.payload.find(child => child._id === this.props.match.params.cid);
                 if (this.state.childName !== child.child) this.setState({ childName: child.child });
                 if (this.state.allergyArray.length !== child.allergies.length) this.setState({ allergyArray: child.allergies });
@@ -40,7 +43,12 @@ class Profile extends React.Component {
         const confirmDelete = window.confirm("delete?");
         if (confirmDelete) {
             this.props.dispatch(deleteAllergen(this.state.pid, this.state.cid, id))
-                .then(res => this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`))
+                .then(res => {
+                    if (res.payload.error) {
+                        if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                    }
+                    this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`)
+                })
                 .catch(error => console.log(error));
         }
     }

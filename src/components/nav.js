@@ -20,7 +20,12 @@ class Nav extends React.Component {
 
     onSubmit(child) {
         this.props.dispatch(editChild(this.props.pid, this.props.cid, child))
-            .then(res => this.props.changeChildName(child.childName))
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
+                this.props.changeChildName(child.childName)
+            })
             .catch(error => console.log(error));
         this.handleCloseModal()
     }

@@ -18,13 +18,24 @@ class EditAllergen extends React.Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getAllergen(this.state.pid, this.state.cid, this.state.aid));
+        this.props.dispatch(getAllergen(this.state.pid, this.state.cid, this.state.aid))
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
+            })
+            .catch(error => console.log(error));
     }
 
     onSubmit(allergen) {
         console.log(allergen);
         this.props.dispatch(editAllergen(this.state.pid, this.state.cid, this.state.aid, allergen))
-            .then(res => this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`))
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                }
+                this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`)
+            })
             .catch(error => console.log(error));
     }
 

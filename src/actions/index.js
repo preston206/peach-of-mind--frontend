@@ -14,7 +14,9 @@ export const getChildren = (parent) => {
 
     const request = axios.get(`${baseURL}${endpoint}/${pid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'GET_CHILDREN',
@@ -31,9 +33,11 @@ export const getChild = (parent, child) => {
     const pid = parent;
     const cid = child;
 
-    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'GET_CHILD',
@@ -49,9 +53,11 @@ export const addChild = (parent, childName) => {
     const pid = parent;
 
     // send post with axios
-    const request = axios.post(`${baseURL}${endpoint}/${pid}`, childName)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}`, childName, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'ADD_CHILD',
@@ -69,9 +75,11 @@ export const editChild = (parent, child, childName) => {
     const cid = child;
 
     // send put with axios
-    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}`, childName)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}`, childName, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'EDIT_CHILD',
@@ -89,9 +97,11 @@ export const deleteChild = (parent, child) => {
     const cid = child;
 
     // send delete with axios
-    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}`)
+    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'DELETE_CHILD',
@@ -112,9 +122,11 @@ export const getAllergens = (parent, child) => {
     // const cid = '/5a85d4313b2f32310c0d1708';
     // const cid = '/5a85d5053b2f32310c0d170a';
 
-    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'GET_ALLERGENS',
@@ -133,9 +145,11 @@ export const getAllergen = (parent, child, allergen) => {
     const cid = child;
     const aid = allergen;
 
-    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
+    const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'GET_ALLERGEN',
@@ -152,9 +166,11 @@ export const addAllergen = (parent, child, allergen) => {
     const pid = parent;
     const cid = child;
 
-    const request = axios.post(`${baseURL}${endpoint}/${pid}/${cid}`, allergen)
+    const request = axios.post(`${baseURL}${endpoint}/${pid}/${cid}`, allergen, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'ADD_ALLERGEN',
@@ -173,9 +189,11 @@ export const editAllergen = (parent, child, allergen, allergenValues) => {
     const cid = child;
     const aid = allergen;
 
-    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`, allergenValues)
+    const request = axios.put(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`, allergenValues, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'EDIT_ALLERGEN',
@@ -194,9 +212,11 @@ export const deleteAllergen = (parent, child, allergen) => {
     const cid = child;
     const aid = allergen;
 
-    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`)
+    const request = axios.delete(`${baseURL}${endpoint}/${pid}/${cid}/${aid}`, { withCredentials: true })
         .then(response => response.data)
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
 
     return {
         type: 'DELETE_ALLERGEN',
@@ -212,7 +232,7 @@ export const register = (parent) => {
 
     const endpoint = 'parents/register';
 
-    const request = axios.post(`${baseURL}${endpoint}`, parent)
+    const request = axios.post(`${baseURL}${endpoint}`, parent, { withCredentials: true })
         .then(response => response)
         .catch(error => {
             if (error) return Promise.reject({ error });
@@ -248,7 +268,7 @@ export const logout = (parent) => {
     // const endpoint = 'parents/logout';
     const endpoint = '/logout';
 
-    const request = axios.post(`${baseURL}${endpoint}`, parent)
+    const request = axios.post(`${baseURL}${endpoint}`, parent, { withCredentials: true })
         .then(response => response)
         .catch(error => {
             if (error) return Promise.reject({ error });
