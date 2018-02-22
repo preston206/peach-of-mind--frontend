@@ -1,5 +1,6 @@
 import axios from 'axios';
-const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
+const baseURL = 'http://localhost:8080/api/v1/';
+// const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 
 
 // // // CHILD ACTIONS // // //
@@ -242,3 +243,19 @@ export const login = (parent) => {
 };
 
 // logout
+export const logout = (parent) => {
+
+    // const endpoint = 'parents/logout';
+    const endpoint = '/logout';
+
+    const request = axios.post(`${baseURL}${endpoint}`, parent)
+        .then(response => response)
+        .catch(error => {
+            if (error) return Promise.reject({ error });
+        });
+
+    return {
+        type: 'LOGOUT',
+        payload: request
+    }
+};
