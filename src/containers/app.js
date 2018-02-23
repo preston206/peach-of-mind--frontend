@@ -17,6 +17,7 @@ import EditAllergen from '../components/editAllergen';
 import Http404 from '../components/http404';
 import ProfileLoader from '../components/profileLoader';
 import ProfileMgrLoader from '../components/profileMgrLoader';
+import Instructions from '../components/instructions';
 
 import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
@@ -47,6 +48,7 @@ class App extends React.Component {
                     <Route path="/:pid/:cid" component={Profile} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
+                    <Route path="/demo" component={Instructions} />
                     <Route path="/" exact component={Login} />
                     <Route component={Http404} />
                 </Switch>

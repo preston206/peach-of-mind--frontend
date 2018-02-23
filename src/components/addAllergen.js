@@ -27,7 +27,7 @@ class AddAllergen extends React.Component {
     render() {
         return (
             <div>
-                <Nav pid={this.props.match.params.pid} nav="allergenNav" />
+                <Nav pid={this.props.match.params.pid} nav="allergenNav" historyFromContainer={this.props.history} />
                 <div>
                     <h1>Allergen Info</h1>
                     <form

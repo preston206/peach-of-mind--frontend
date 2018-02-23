@@ -174,7 +174,7 @@ class Profile extends React.Component {
     render() {
         return (
             <div>
-                <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" changeChildName={name => this.handleChildNameChange(name)} />
+                <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" changeChildName={name => this.handleChildNameChange(name)} historyFromContainer={this.props.history} />
                 <div id="profile-page" className="ui center aligned container pad-9em">
                     <div id="allergies-container" className="ui black inverted segment">
 

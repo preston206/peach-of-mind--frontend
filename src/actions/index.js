@@ -1,6 +1,6 @@
 import axios from 'axios';
-const baseURL = 'http://localhost:8080/api/v1/';
-// const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
+// const baseURL = 'http://localhost:8080/api/v1/';
+const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 
 
 // // // CHILD ACTIONS // // //
@@ -263,12 +263,11 @@ export const login = (parent) => {
 };
 
 // logout
-export const logout = (parent) => {
+export const logout = () => {
 
-    // const endpoint = 'parents/logout';
-    const endpoint = '/logout';
+    const endpoint = 'parents/logout';
 
-    const request = axios.post(`${baseURL}${endpoint}`, parent, { withCredentials: true })
+    const request = axios.get(`${baseURL}${endpoint}`, { withCredentials: true })
         .then(response => response)
         .catch(error => {
             if (error) return Promise.reject({ error });

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // actions
-import { editChild } from '../actions';
+import { editChild, logout } from '../actions';
 
 // react modal package
 import ReactModal from 'react-modal';
@@ -22,12 +22,25 @@ class Nav extends React.Component {
         this.props.dispatch(editChild(this.props.pid, this.props.cid, child))
             .then(res => {
                 if (res.payload.error) {
-                    if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
+                    if (res.payload.error.response.status === 302) return this.props.historyFromContainer.push(`/`);
                 }
                 this.props.changeChildName(child.childName)
             })
             .catch(error => console.log(error));
         this.handleCloseModal()
+    }
+
+    logout() {
+        this.props.dispatch(logout())
+            .then(res => {
+                if (res.payload.error) {
+                    if (res.payload.error.response.status === 302) return this.props.historyFromContainer.push(`/`);
+                }
+
+                if (res.payload.status === 200) return this.props.historyFromContainer.push(`/`);
+
+            })
+            .catch(error => console.log(error));
     }
 
     handleOpenModal() {
@@ -40,16 +53,24 @@ class Nav extends React.Component {
 
     renderNav(props) {
         if (props === "profileNav") {
-            return (<ul><li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
-                <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
-                <li><a href="#">Logout</a></li></ul>);
+            return (
+                <ul>
+                    <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
+                    <li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
+                    <li><a href="#" onClick={event => this.logout(event)}>Logout</a></li>
+                </ul>
+            );
         }
         else if (props === "allergenNav") {
-            return (<ul><li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
-                <li><a href="#">Logout</a></li></ul>);
+            return (
+                <ul>
+                    <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
+                    <li><a href="#" onClick={event => this.logout(event)}>Logout</a></li>
+                </ul>
+            );
         }
         else {
-            return (<ul><li><a href="#">Logout</a></li></ul>);
+            return (<ul><li><a href="#" onClick={event => this.logout(event)}>Logout</a></li></ul>);
         }
     }
 

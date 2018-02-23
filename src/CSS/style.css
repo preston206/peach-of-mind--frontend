@@ -16,7 +16,8 @@ body {
     border-bottom-right-radius: 3px!important;
 }
 
-#login-error-message, #register-error-message {
+#login-error-message,
+#register-error-message {
     background: rgba(254, 254, 254, 0.9);
     margin-top: 15%;
 }
@@ -150,6 +151,19 @@ a:hover {
         line-height: 0;
         font-size: 3em;
         color: #ff9966;
+    }
+    #instructions {
+        background-color: rgba(0, 0, 0, 0.9);
+        font-size: 1.25em;
+        margin-top: 5%;
+    }
+    #instructions h1 {
+        text-align: center;
+    }
+    #instructions a {
+        font-size: 1em;
+        color: dodgerblue;
+        text-decoration: underline;
     }
     .login-register-form {
         margin-top: 1.5em;
