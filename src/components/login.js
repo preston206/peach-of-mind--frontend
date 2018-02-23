@@ -20,11 +20,9 @@ class Login extends React.Component {
     };
 
     onSubmit(parent) {
-        console.log(parent);
         return this.props
             .dispatch(login(parent))
             .then(res => {
-                console.log("res--", res);
                 if (res.payload.error) {
 
                     this.setState({ loginErrorMsg: "invalid credentials" })
@@ -63,7 +61,7 @@ class Login extends React.Component {
                         )}>
                         <div className="required field">
                             <label htmlFor="username">Username</label>
-                            <Field component="input" type="text" name="username" id="username" placeholder="password" minLength="4" required autoFocus />
+                            <Field component="input" type="text" name="username" id="username" placeholder="username" minLength="4" required autoFocus />
                         </div>
                         <div className="required field">
                             <label htmlFor="password">Password</label>

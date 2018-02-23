@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const Instructions = () => {
     return (
@@ -11,7 +10,8 @@ const Instructions = () => {
                     <p>If you don't like instructions, just <a href='/register'>register</a> a new account and start clicking around.</p>
                     <p>1) Or, login with the following creds:</p>
                     <span>Username: peter</span><br />
-                    <span>Password: griffen99</span>
+                    <span>Password: griffen99</span><br />
+                    <span>(credentials are case sensitive)</span>
                     <br /><br />
                     <p>2) Then, you can:</p>
                     <span>add a child profile...</span><br />
