@@ -19,7 +19,7 @@ body {
 #login-error-message,
 #register-error-message {
     background: rgba(254, 254, 254, 0.9);
-    margin-top: 15%;
+    margin-top: 5%;
 }
 
 #profile-manager-header {
@@ -112,7 +112,7 @@ a:hover {
     color: #f9f9f9;
 }
 
-#logo {
+#logo, #logo-demo {
     margin-top: 7px;
     display: block;
     float: left;
@@ -152,6 +152,19 @@ a:hover {
         font-size: 3em;
         color: #ff9966;
     }
+    #instructions-container {
+        margin-top: 8em;
+    }
+    #nav-header-demo {
+        font-family: 'Yesteryear', cursive;
+        margin-right: 6%;
+        margin-top: 10%;
+        margin-bottom: 0;
+        text-align: center;
+        line-height: 0;
+        font-size: 3em;
+        color: #ff9966;
+    }
     #instructions {
         background-color: rgba(0, 0, 0, 0.9);
         font-size: 1.25em;
@@ -177,7 +190,7 @@ a:hover {
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 3%;
     }
-    .edit-modal {
+    /* .edit-modal {
         position: absolute;
         top: 275px;
         left: 10px;
@@ -185,36 +198,38 @@ a:hover {
         bottom: 45px;
         background-color: rgba(0, 0, 0, 0.6);
         padding: 4px;
-    }
-    .add-modal {
-        position: absolute;
-        top: 150px;
+    } */
+    .add-modal,
+    .edit-modal {
+        /* position: absolute;
+        top: 110px;
         left: 10px;
         right: 10px;
-        bottom: 45px;
+        bottom: 45px; */
         background-color: rgba(0, 0, 0, 0.6);
-        padding: 4px;
+        padding: 1em;
     }
     .register-login-modal {
-        position: absolute;
+        /* position: absolute;
         top: 20%;
         left: 2%;
         right: 2%;
-        bottom: 30%;
+        bottom: 30%; */
         background-color: rgba(0, 0, 0, 0.7);
         padding: 2%;
         color: rgb(218, 0, 0);
     }
-    .add-profile-form {
-        width: 90%;
+    .add-profile-form,
+    .edit-profile-form {
+        /* width: 90%;
         margin-left: auto;
-        margin-right: auto;
-        margin-top: 3.5em;
-        padding: 2em;
+        margin-right: auto; */
+        margin-top: .5em;
+        padding: 1em;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 3%;
     }
-    .edit-profile-form {
+    /* .edit-profile-form {
         width: 90%;
         margin-left: auto;
         margin-right: auto;
@@ -222,7 +237,7 @@ a:hover {
         padding: 2em;
         background-color: rgba(0, 0, 0, 0.8);
         border-radius: 3%;
-    }
+    } */
     .profile-form-close-button {
         font-size: 1.5em;
         color: black;

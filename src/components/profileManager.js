@@ -93,6 +93,17 @@ class ProfileManager extends React.Component {
                     isOpen={this.state.showModal}
                     contentLabel="add or edit child profile"
                     className="add-modal"
+                    style={{
+                        overlay: {
+                            position: "fixed",
+                            top: "0px",
+                            left: "0px",
+                            right: "0px",
+                            bottom: "0px",
+                            backgroundColor: "rgba(255, 255, 255, 0.55)",
+                            zIndex: "3"
+                        }
+                    }}
                 >
                     <button
                         type="button"

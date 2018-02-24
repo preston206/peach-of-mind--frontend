@@ -28,7 +28,6 @@ class EditAllergen extends React.Component {
     }
 
     onSubmit(allergen) {
-        console.log(allergen);
         this.props.dispatch(editAllergen(this.state.pid, this.state.cid, this.state.aid, allergen))
             .then(res => {
                 if (res.payload.error) {
@@ -89,10 +88,6 @@ class EditAllergen extends React.Component {
         )
     }
 };
-
-
-
-// export default EditAllergen;
 
 function mapStateToProps(state) {
     if (state.allergens.allergen) {

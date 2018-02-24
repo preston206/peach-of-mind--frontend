@@ -16,7 +16,8 @@ class Register extends React.Component {
 
     state = {
         showModal: false,
-        regErrorMsg: ''
+        regErrorMsg: '',
+        regErrorLoc: ''
     };
 
     onSubmit(parent) {
@@ -35,7 +36,7 @@ class Register extends React.Component {
                     res.payload.error.response.status === 500 ?
                         this.setState({ regErrorMsg: "that email address already exists in our database" })
                         :
-                        this.setState({ regErrorMsg: res.payload.error.response.data.message });
+                        this.setState({ regErrorLoc: res.payload.error.response.data.location, regErrorMsg: res.payload.error.response.data.message });
 
                     // wait 200ms for the state to get updated and then fire modal with error msg
                     setTimeout(() => {
@@ -120,6 +121,17 @@ class Register extends React.Component {
                         isOpen={this.state.showModal}
                         contentLabel="there has been a registration problem"
                         className="register-login-modal"
+                        style={{
+                            overlay: {
+                                position: "fixed",
+                                top: "0px",
+                                left: "0px",
+                                right: "0px",
+                                bottom: "0px",
+                                backgroundColor: "rgba(255, 255, 255, 0.55)",
+                                zIndex: "3"
+                            }
+                        }}
                     >
 
                         <button
@@ -132,7 +144,7 @@ class Register extends React.Component {
 
                         <div className="ui segment" id="register-error-message">
                             <h1>Registration Error</h1>
-                            <p>{this.state.regErrorMsg}</p>
+                            <p>your {this.state.regErrorLoc} {this.state.regErrorMsg}</p>
                             <p>please try again</p>
                         </div>
                     </ReactModal>

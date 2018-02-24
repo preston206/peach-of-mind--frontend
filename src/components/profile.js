@@ -35,7 +35,6 @@ class Profile extends React.Component {
     }
 
     handleChildNameChange(childName) {
-        console.log(childName);
         return this.setState({ childName: childName });
     }
 
