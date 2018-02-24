@@ -38,14 +38,14 @@ class AddAllergen extends React.Component {
                         )}>
                         <div className="field">
                             <label htmlFor="allergen-input">Name:</label>
-                            <Field component="input" type="text" name="allergen" id="allergen-input" />
+                            <Field component="input" type="text" name="allergen" id="allergen-input" require />
                         </div>
 
                         <div className="inline fields">
                             <label>Did your child have an allergic reaction?</label>
                             <div className="field">
                                 <div className="ui radio checkbox">
-                                    <Field component="input" type="radio" name="reaction" id="reaction-not-safe" value="unsafe" />
+                                    <Field component="input" type="radio" name="reaction" id="reaction-not-safe" value="unsafe" require />
                                     <label htmlFor="reaction-not-safe">reaction</label>
                                 </div>
                             </div>
