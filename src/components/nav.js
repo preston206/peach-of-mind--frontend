@@ -55,22 +55,22 @@ class Nav extends React.Component {
         if (props === "profileNav") {
             return (
                 <ul>
-                    <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
-                    <li><a href="#" onClick={event => this.handleOpenModal(event)}>Edit Child's Name</a></li>
-                    <li><a href="#" onClick={event => this.logout(event)}>Logout</a></li>
+                    <Link to={`/profilemgr/${this.props.pid}`}><li><button type="button" className="big fluid ui black button">Profile Manager</button></li></Link>
+                    <li><button type="button" onClick={event => this.handleOpenModal(event)} className="big fluid ui black button">Edit Child's Name</button></li>
+                    <li><button type="button" onClick={event => this.logout(event)} className="big fluid ui black button">Logout</button></li>
                 </ul>
             );
         }
         else if (props === "allergenNav") {
             return (
                 <ul>
-                    <li><Link to={`/profilemgr/${this.props.pid}`}>Profile Manager</Link></li>
-                    <li><a href="#" onClick={event => this.logout(event)}>Logout</a></li>
+                    <Link to={`/profilemgr/${this.props.pid}`}><li><button type="button" className="big fluid ui black button">Profile Manager</button></li></Link>
+                    <li><button type="button" onClick={event => this.logout(event)} className="big fluid ui black button">Logout</button></li>
                 </ul>
             );
         }
         else {
-            return (<ul><li><a href="#" onClick={event => this.logout(event)}>Logout</a></li></ul>);
+            return (<ul><li><button type="button" onClick={event => this.logout(event)} className="big fluid ui black button">Logout</button></li></ul>);
         }
     }
 

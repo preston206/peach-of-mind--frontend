@@ -1,6 +1,10 @@
 import axios from 'axios';
+
 // const baseURL = 'http://localhost:8080/api/v1/';
 const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
+// // //
+// NOTE: when testing locally, toggle baseURL
+// // //
 
 
 // // // CHILD ACTIONS // // //

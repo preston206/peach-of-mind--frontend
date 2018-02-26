@@ -121,11 +121,11 @@ class Profile extends React.Component {
 
                             <div className="ui grey inverted segment">
                                 <Link to={`/${this.state.pid}/${this.state.cid}/${allergen._id}/edit`}>
-                                    <i className="setting icon" title="remove this allergen"></i>
+                                    <i className="setting icon" title="edit this allergen" alt="edit this allergen"></i>
                                     <span className="allergen-edit"></span>
                                 </Link>
                                 <span className="allergen-delete" onClick={id => this.deleteAllergen(aid)}>
-                                    <i className="remove icon"></i>
+                                    <i className="remove icon remove-icon" title="remove this allergen" alt="remove this allergen"></i>
                                 </span>
                             </div>
                         </div>
@@ -174,7 +174,7 @@ class Profile extends React.Component {
         return (
             <div>
                 <Nav pid={this.state.pid} cid={this.state.cid} nav="profileNav" changeChildName={name => this.handleChildNameChange(name)} historyFromContainer={this.props.history} />
-                <div id="profile-page" className="ui center aligned container pad-9em">
+                <div id="profile-page" className="ui center aligned container">
                     <div id="allergies-container" className="ui black inverted segment">
 
                         <div className="ui center aligned secondary inverted segment">

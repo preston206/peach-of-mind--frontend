@@ -16,8 +16,7 @@ class Register extends React.Component {
 
     state = {
         showModal: false,
-        regErrorMsg: '',
-        regErrorLoc: ''
+        regErrorMsg: ''
     };
 
     onSubmit(parent) {
@@ -32,11 +31,11 @@ class Register extends React.Component {
                 // if response object contains error property reject promise and throw error
                 if (res.payload.error) {
 
-                    // condition for state update depending on if response error status = 500
+                    // updating the state depending on if response error status = 500
                     res.payload.error.response.status === 500 ?
                         this.setState({ regErrorMsg: "that email address already exists in our database" })
                         :
-                        this.setState({ regErrorLoc: res.payload.error.response.data.location, regErrorMsg: res.payload.error.response.data.message });
+                        this.setState({ regErrorMsg: res.payload.error.response.data.message });
 
                     // wait 200ms for the state to get updated and then fire modal with error msg
                     setTimeout(() => {
@@ -144,7 +143,7 @@ class Register extends React.Component {
 
                         <div className="ui segment" id="register-error-message">
                             <h1>Registration Error</h1>
-                            <p>your {this.state.regErrorLoc} {this.state.regErrorMsg}</p>
+                            <p>{this.state.regErrorMsg}</p>
                             <p>please try again</p>
                         </div>
                     </ReactModal>
