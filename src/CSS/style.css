@@ -248,11 +248,12 @@ header {
     padding-left: 7px;
 }
 
-#nav-header {
+#nav-header,
+#nav-header-demo {
     font-family: 'Yesteryear', cursive;
-    /* margin-right: 6%;
-    margin-top: 10%;
-    margin-bottom: 0; */
+    margin-right: 6%;
+    /* margin-top: 10%; */
+    /* margin-bottom: 0; */
     text-align: center;
     /* line-height: 0; */
     letter-spacing: 0.4rem;
@@ -283,6 +284,36 @@ nav ul li {
     /* width: 100%; */
 }
 
+
+/* app demo instructions page */
+
+#nav-header-demo {
+    padding-bottom: 1%;
+}
+
+#instructions-container {
+    margin-top: 10em;
+}
+
+#instructions {
+    background-color: rgba(0, 0, 0, 0.9);
+    font-size: 1.25em;
+    margin-top: 5%;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#instructions h1 {
+    text-align: center;
+}
+
+#instructions a {
+    font-size: 1em;
+    color: dodgerblue;
+    text-decoration: underline;
+}
+
 #logo,
 #logo-demo {
     margin-top: 10px;
@@ -311,7 +342,7 @@ nav ul li {
     #nav-header,
     #nav-header-demo {
         /* font-family: 'Yesteryear', cursive; */
-        margin-right: 6%;
+        /* margin-right: 6%; */
         margin-top: 10%;
         margin-bottom: 0;
         /* text-align: center; */
@@ -356,21 +387,17 @@ nav ul li {
         border-bottom: 1px solid #bbb;
     }
     /* demo page */
+    #nav-header-demo {
+        padding-bottom: 10%;
+    }
     #instructions-container {
-        margin-top: 8em;
+        margin-top: 22%;
     }
     #instructions {
-        background-color: rgba(0, 0, 0, 0.9);
+        /* background-color: rgba(0, 0, 0, 0.9);
         font-size: 1.25em;
-        margin-top: 5%;
-    }
-    #instructions h1 {
-        text-align: center;
-    }
-    #instructions a {
-        font-size: 1em;
-        color: dodgerblue;
-        text-decoration: underline;
+        margin-top: 5%; */
+        width: 98%;
     }
     /* login page */
     .login-register-form {
