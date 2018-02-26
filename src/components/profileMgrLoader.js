@@ -1,13 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// the purpose of this component is to show the user that their request is
+// processing, in turn allowing the database a little extra time to write the dataF
+
 class ProfileMgrLoader extends React.Component {
+
     componentWillMount() {
         const pid = this.props.match.params.pid;
         setTimeout(() => {
             this.props.history.push(`/profilemgr/${pid}/`);
         }, 1000);
     }
+
     render() {
         return (
             <div className="ui center aligned container pad-10em">

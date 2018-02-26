@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// react modal package
+// third party modal pop-up for react
 import ReactModal from 'react-modal';
 
 // components
@@ -20,13 +20,19 @@ class Login extends React.Component {
     };
 
     onSubmit(parent) {
+
+        // dispatching the action for authentication
         return this.props
             .dispatch(login(parent))
             .then(res => {
+
+                // if the response from the server contains an error, then store the error message in the state and reject promise
                 if (res.payload.error) {
 
                     this.setState({ loginErrorMsg: "invalid credentials" })
 
+                    // pause for 200ms before firing modal, to allow the state to get updated
+                    // the modal will contain the error message returned from the server
                     setTimeout(() => {
                         this.handleOpenModal();
                     }, 200);
@@ -35,6 +41,8 @@ class Login extends React.Component {
                 }
 
                 if (!res.payload) return Promise.reject({ msg: "unable to login" });
+
+                // if successfully authenticated then bounce the user to their profile page, which contains all of their child profiles
                 return this.props.history.push(`/profilemgr/${res.payload.data.pid}`);
             })
             .catch(error => console.log(error));

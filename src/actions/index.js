@@ -13,7 +13,6 @@ const baseURL = 'https://sleepy-castle-79477.herokuapp.com/api/v1/';
 export const getChildren = (parent) => {
 
     const endpoint = 'children';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
     const pid = parent;
 
     const request = axios.get(`${baseURL}${endpoint}/${pid}`, { withCredentials: true })
@@ -32,8 +31,6 @@ export const getChildren = (parent) => {
 export const getChild = (parent, child) => {
 
     const endpoint = 'children';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
     const pid = parent;
     const cid = child;
 
@@ -53,7 +50,6 @@ export const getChild = (parent, child) => {
 export const addChild = (parent, childName) => {
 
     const endpoint = 'children';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
     const pid = parent;
 
     // send post with axios
@@ -73,8 +69,6 @@ export const addChild = (parent, childName) => {
 export const editChild = (parent, child, childName) => {
 
     const endpoint = 'children';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
     const pid = parent;
     const cid = child;
 
@@ -95,8 +89,6 @@ export const editChild = (parent, child, childName) => {
 export const deleteChild = (parent, child) => {
 
     const endpoint = 'children';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
     const pid = parent;
     const cid = child;
 
@@ -122,9 +114,6 @@ export const getAllergens = (parent, child) => {
     const endpoint = 'allergens';
     const pid = parent;
     const cid = child;
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
-    // const cid = '/5a85d5053b2f32310c0d170a';
 
     const request = axios.get(`${baseURL}${endpoint}/${pid}/${cid}`, { withCredentials: true })
         .then(response => response.data)
@@ -142,9 +131,6 @@ export const getAllergens = (parent, child) => {
 export const getAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
-    // const aid = '/5a85d6ff3b2f32310c0d170c';
     const pid = parent;
     const cid = child;
     const aid = allergen;
@@ -165,8 +151,6 @@ export const getAllergen = (parent, child, allergen) => {
 export const addAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
     const pid = parent;
     const cid = child;
 
@@ -186,9 +170,6 @@ export const addAllergen = (parent, child, allergen) => {
 export const editAllergen = (parent, child, allergen, allergenValues) => {
 
     const endpoint = 'allergens';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
-    // const aid = '/5a85d6ff3b2f32310c0d170c';
     const pid = parent;
     const cid = child;
     const aid = allergen;
@@ -209,9 +190,6 @@ export const editAllergen = (parent, child, allergen, allergenValues) => {
 export const deleteAllergen = (parent, child, allergen) => {
 
     const endpoint = 'allergens';
-    // const pid = '/5a85d2f13b2f32310c0d1705';
-    // const cid = '/5a85d4313b2f32310c0d1708';
-    // const aid = '/5a85d6ff3b2f32310c0d170c';
     const pid = parent;
     const cid = child;
     const aid = allergen;

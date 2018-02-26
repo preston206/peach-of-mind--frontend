@@ -18,6 +18,10 @@ class Profile extends React.Component {
     }
 
     componentWillMount() {
+
+        // dispatching action to get all the children associated with the parent
+        // and then find the specific child per the URL param
+        // then store the child's name and allergies in the state
         this.props.dispatch(getChildren(this.state.pid))
             .then(res => {
                 if (res.payload.error) {
@@ -53,15 +57,18 @@ class Profile extends React.Component {
     }
 
     renderAllergies = allergies => {
+
         let newArray;
+        // NOTE: this is a lengthy if condition
+        // if the array of allergies is empty, then a message is displayed to the user to let them know that they havent added any yet
         if (allergies.length > 0) {
 
             newArray = allergies.map(allergen => {
 
-                // add the allergen ID to a variable for attaching to the delete fn
+                // add the allergen ID to a variable for attaching to the delete allergen method call
                 const aid = allergen._id;
 
-                // creating date vars for date stamping the allergen when it gets rendered
+                // creating vars for date stamping the allergen, and then running it through a switch case to convert the number to the month abreviationF
                 const dateFromMongoDB = allergen.updatedAt ? allergen.updatedAt : allergen.added;
                 const month = dateFromMongoDB.substring(5, 7);
                 const day = dateFromMongoDB.substring(8, 10);
@@ -107,7 +114,7 @@ class Profile extends React.Component {
                         <span className="allergen-name">{allergen.allergen}</span>
                     </div>;
 
-                // building the allergen segment and returning JSX
+                // building and returning JSX for the allergen segment
                 return (
                     <div className="ui segments" key={allergen._id}>
 
@@ -133,13 +140,12 @@ class Profile extends React.Component {
                 )
             }
             )
-        }
-
-        else { return (<div className="ui segment"><p>You haven't added any allergies yet.</p></div>) }
+        } else { return (<div className="ui segment"><p>You haven't added any allergies yet.</p></div>) }
 
         return newArray;
     }
 
+    // method for sorting allergens
     sortByUnsafe(allergies) {
         const unsafe = [];
         const safe = [];
@@ -155,6 +161,7 @@ class Profile extends React.Component {
         this.updateStateWithNewAllergyArray(combinedReactions);
     }
 
+    // method for sorting allergens
     sortBySafe(allergies) {
         const unsafe = [];
         const safe = [];

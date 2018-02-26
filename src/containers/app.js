@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 // actions
 import { getChildren, getChild, getAllergens, getAllergen } from '../actions';
-// import { getChildren, getAllergens } from '../actions';
 
 // components
 import Login from '../components/login';
@@ -19,24 +18,12 @@ import ProfileLoader from '../components/profileLoader';
 import ProfileMgrLoader from '../components/profileMgrLoader';
 import Instructions from '../components/instructions';
 
+// third party package for using a modal pop-up with React
 import ReactModal from 'react-modal';
 ReactModal.setAppElement('#root');
 
 class App extends React.Component {
-
-    // state = {
-    //     children: []
-    // }
-
-    // componentWillMount() {
-    //     this.props.getChild();
-    //     this.props.getAllergen();
-    //     this.props.getChildren();
-    //     this.props.getAllergens();
-    // }
-
     render() {
-        // console.log("props:", this.props);
         return (
             <BrowserRouter>
                 <Switch>

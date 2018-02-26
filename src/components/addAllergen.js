@@ -12,13 +12,19 @@ import Nav from './nav';
 class AddAllergen extends React.Component {
 
     onSubmit(allergen) {
+
+        // grab parent and child IDs from URL params and assign to variables
         const pid = this.props.match.params.pid;
         const cid = this.props.match.params.cid;
+
+        // dispatch action to add a new allergen for a specific child profile
         this.props.dispatch(addAllergen(pid, cid, allergen))
             .then(res => {
                 if (res.payload.error) {
                     if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
                 }
+
+                // allowing the DB a couple extra seconds to write the data by routing the user through a dummy loader component to show that the action is processing
                 this.props.history.push(`/${pid}/${cid}/loader`)
             })
             .catch(error => console.log(error));

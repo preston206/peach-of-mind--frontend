@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// this component is the big header that sits at the top of the login and register pages- it contains the big peach backgound
+
 const LandingHeader = () => {
     return (
         <div className="ui center aligned container pad-10em">
@@ -11,8 +13,6 @@ const LandingHeader = () => {
         </div>
     )
 };
-
-// export default LandingHeader;
 
 function mapStateToProps(state) {
     return {

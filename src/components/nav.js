@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // actions
 import { editChild, logout } from '../actions';
 
-// react modal package
+// third party modal pop-up for react
 import ReactModal from 'react-modal';
 
 // importing image
@@ -19,17 +19,23 @@ class Nav extends React.Component {
     };
 
     onSubmit(child) {
+
+        // dispatching action to edit child name
+        // I moved this action to the navbar because if I added another button to the profile UI it would get cluttered
         this.props.dispatch(editChild(this.props.pid, this.props.cid, child))
             .then(res => {
                 if (res.payload.error) {
                     if (res.payload.error.response.status === 302) return this.props.historyFromContainer.push(`/`);
                 }
+
+                // callback to container
                 this.props.changeChildName(child.childName)
             })
             .catch(error => console.log(error));
         this.handleCloseModal()
     }
 
+    // dispatching action for logout
     logout() {
         this.props.dispatch(logout())
             .then(res => {
@@ -37,6 +43,7 @@ class Nav extends React.Component {
                     if (res.payload.error.response.status === 302) return this.props.historyFromContainer.push(`/`);
                 }
 
+                // using history passed from container to redirect user after successful logout
                 if (res.payload.status === 200) return this.props.historyFromContainer.push(`/`);
 
             })
@@ -51,6 +58,7 @@ class Nav extends React.Component {
         this.setState({ showModal: false });
     }
 
+    // conditional rendering to determine which menu options to display to the user
     renderNav(props) {
         if (props === "profileNav") {
             return (
@@ -75,7 +83,6 @@ class Nav extends React.Component {
     }
 
     render() {
-
         return (
             <header>
                 <img id="logo" src={peach} alt="Peach of Mind Logo" />

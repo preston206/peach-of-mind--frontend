@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // importing image
 import peach from '../IMG/peachImage.png';
 
+// this component is for the app instructions demo page
+
 const Instructions = () => {
     return (
         <div>
@@ -16,7 +18,7 @@ const Instructions = () => {
                 <div className="ui left aligned inverted segment" id="instructions">
                     <h1>How to demo this app</h1>
                     <p>If you don't want to read instructions, you can get started by <a href='/register'>registering</a> a new account and start clicking around.</p>
-                    
+
                     <p>1) Or, login with the following creds:</p>
                     <span>Username: peter</span><br />
                     <span>Password: griffen99</span><br />

@@ -11,6 +11,7 @@ import Nav from './nav';
 
 class EditAllergen extends React.Component {
 
+    // pid = parent; cid = child; aid = allergen
     state = {
         pid: this.props.match.params.pid,
         cid: this.props.match.params.cid,
@@ -18,6 +19,8 @@ class EditAllergen extends React.Component {
     }
 
     componentWillMount() {
+
+        // dispatch action to get all allergens for a specific child
         this.props.dispatch(getAllergen(this.state.pid, this.state.cid, this.state.aid))
             .then(res => {
                 if (res.payload.error) {
@@ -28,11 +31,16 @@ class EditAllergen extends React.Component {
     }
 
     onSubmit(allergen) {
+
+        // dispatch action to update an allergen name, reaction, or details
+        // the date-stamp displayed in the UI is either the date added or the latest updated date
         this.props.dispatch(editAllergen(this.state.pid, this.state.cid, this.state.aid, allergen))
             .then(res => {
                 if (res.payload.error) {
                     if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
                 }
+
+                // allowing the DB a couple extra seconds to write the data by routing the user through a dummy loader component to show that the action is processing
                 this.props.history.push(`/${this.state.pid}/${this.state.cid}/loader`)
             })
             .catch(error => console.log(error));
