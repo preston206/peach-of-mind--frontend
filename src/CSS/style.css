@@ -147,6 +147,16 @@ body {
     margin-top: 5%;
 }
 
+.login-instructions-container {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    padding: 1%;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
 
 /* profile manage page */
 
@@ -302,17 +312,20 @@ nav ul li {
     width: 55%;
     margin-left: auto;
     margin-right: auto;
+    line-height: 115%;
 }
 
 #instructions h1 {
     text-align: center;
 }
 
-#instructions a {
-    font-size: 1em;
-    color: dodgerblue;
+/* #instructions a {
+    font-size: 1.1em;
+    color: #ff9966;
+    color: rgb(0, 187, 0);
     text-decoration: underline;
-}
+} 
+*/
 
 #logo,
 #logo-demo {
@@ -411,6 +424,9 @@ nav ul li {
         width: 100%;
         /* margin-left: auto;
         margin-right: auto; */
+    }
+    .login-instructions-container {
+        width: 100%;
     }
     /* add allergen page */
     .allergen-form {

@@ -80,6 +80,12 @@ class Login extends React.Component {
                             <button type="button" className="fluid ui grey button">GO TO REGISTER</button>
                         </Link>
                     </form>
+                    <div className="login-instructions-container">
+                        <p>Login Instructions:</p>
+                        <span>Username: peter</span><br />
+                        <span>Password: griffen99</span><br />
+                        <span>(credentials are case sensitive)</span>
+                    </div>
                 </div>
 
                 <div>
