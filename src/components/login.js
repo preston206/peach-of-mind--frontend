@@ -81,7 +81,7 @@ class Login extends React.Component {
                         </Link>
                     </form>
                     <div className="login-instructions-container">
-                        <p>Login Instructions:</p>
+                        <p>Test Account Login Instructions:</p>
                         <span>Username: peter</span><br />
                         <span>Password: griffen99</span><br />
                         <span>(credentials are case sensitive)</span>
