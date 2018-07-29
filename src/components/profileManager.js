@@ -22,7 +22,7 @@ class ProfileManager extends React.Component {
 
     componentWillMount() {
 
-        // dispatching action to get all the child profiles for a specific parent AKA user
+        // dispatching action to get all the child profiles for a specific parent
         this.props.dispatch(getChildren(this.state.pid))
             .then(res => {
                 if (res.payload.error) {
@@ -35,14 +35,15 @@ class ProfileManager extends React.Component {
 
     onSubmit(child) {
 
-        // dispatching action to add a child profile for a specific parent AKA user
+        // dispatching action to add a child profile for a specific parent
         this.props.dispatch(addChild(this.state.pid, child))
             .then(res => {
                 if (res.payload.error) {
                     if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
                 }
 
-                // allowing the DB a couple extra seconds to write the data by routing the user through a dummy loader component to show that the action is processing
+                // allowing the DB a couple extra seconds to write the data by routing the user through the loader component to show that the action is processing
+                // it displays a spinner and a message stating the the request is processing
                 this.props.history.push(`/${this.state.pid}/loader`)
             })
             .catch(error => console.log(error));
@@ -59,7 +60,7 @@ class ProfileManager extends React.Component {
     // this method accepts a parameter which should be the array of children
     // then, checks to verify that it is indeed an array
     // then, if the array is not empty it returns the JSX, otherwise returns the missing child profile message.
-    // this method was originally exactly like the ternary in profile.js but it wasnt displaying
+    // this method was originally exactly like the ternary in profile.js but for some reason it wasn't displaying
     // the expected message properly if no child profiles had been created yet- this nested condition solved the problem
     renderChildren = children => {
 

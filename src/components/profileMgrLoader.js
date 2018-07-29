@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // the purpose of this component is to show the user that their request is
-// processing, in turn allowing the database a little extra time to write the dataF
+// processing, in turn allowing the database a little extra time to write the data before
+// displaying the data to the page
 
 class ProfileMgrLoader extends React.Component {
 
