@@ -24,7 +24,8 @@ class AddAllergen extends React.Component {
                     if (res.payload.error.response.status === 302) return this.props.history.push(`/`);
                 }
 
-                // allowing the DB a couple extra seconds to write the data by routing the user through a dummy loader component to show that the action is processing
+                // allowing the DB a couple extra seconds to write the data by routing the user through the loader component to show that the action is processing
+                // it displays a spinner and a message stating the the request is processing
                 this.props.history.push(`/${pid}/${cid}/loader`)
             })
             .catch(error => console.log(error));

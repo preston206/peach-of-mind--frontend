@@ -58,18 +58,23 @@ class Profile extends React.Component {
 
     renderAllergies = allergies => {
 
-        let newArray;
-        // NOTE: this is a lengthy if condition
+        // init variable which will be assigned to a modified version of the incoming allergies array
+        let copyOfAllergiesArray;
+
+        // NOTE: this is a lengthy If condition
         // if the array of allergies is empty, then a message is displayed to the user to let them know that they havent added any yet
         if (allergies.length > 0) {
 
-            newArray = allergies.map(allergen => {
+            copyOfAllergiesArray = allergies.map(allergen => {
 
                 // add the allergen ID to a variable for attaching to the delete allergen method call
                 const aid = allergen._id;
 
-                // creating vars for date stamping the allergen, and then running it through a switch case to convert the number to the month abreviationF
+                // assign variable lastest time stamp
+                // if allergen has been updated then it will have an entry for updatedAt in the DB
                 const dateFromMongoDB = allergen.updatedAt ? allergen.updatedAt : allergen.added;
+
+                // creating variables for date stamping the allergen, and then running it through a switch case to convert the number to the month abreviation
                 const month = dateFromMongoDB.substring(5, 7);
                 const day = dateFromMongoDB.substring(8, 10);
 
@@ -142,10 +147,10 @@ class Profile extends React.Component {
             )
         } else { return (<div className="ui segment"><p>You haven't added any allergies yet.</p></div>) }
 
-        return newArray;
+        return copyOfAllergiesArray;
     }
 
-    // method for sorting allergens
+    // method for sorting Unsafe allergens
     sortByUnsafe(allergies) {
         const unsafe = [];
         const safe = [];
@@ -161,7 +166,7 @@ class Profile extends React.Component {
         this.updateStateWithNewAllergyArray(combinedReactions);
     }
 
-    // method for sorting allergens
+    // method for sorting Safe allergens
     sortBySafe(allergies) {
         const unsafe = [];
         const safe = [];
